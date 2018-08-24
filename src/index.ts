@@ -82,7 +82,7 @@ class AutoversionWidget extends Widget {
                     option.value = record;
                     let timestamp = new Date(record[1]);
 
-                    option.textContent = timestamp + record[0].slice(0, 6    );
+                    option.textContent = timestamp + '--' + record[0].slice(0, 6    );
                     type.appendChild(option);
                 }
                 console.log(versions)
@@ -135,18 +135,18 @@ function autoversion(app: JupyterLab, context: DocumentRegistry.IContext<INotebo
 
 }
 
-function revision(app: JupyterLab, context: DocumentRegistry.IContext<INotebookModel>, version: string, id: string): void {
+function revision(app: JupyterLab, context: DocumentRegistry.IContext<INotebookModel>, id: string, version: string): void {
     console.log(id);
     console.log(version);
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", PageConfig.getBaseUrl() + "autoversion/restore?id=" + id + "&path=" + context.path, true);
+    xhr.open("GET", PageConfig.getBaseUrl() + "autoversion/restore?id=" + id + "&path=" + context.path + '&version=' + version, true);
 
     xhr.onload = function (e:any) {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
                 let data = JSON.parse(xhr.responseText);
                 console.log(data);
-                if(data['version'] === version) {
+                if(data['version'].toString() === version) {
                     context.model.fromString(data['nb']);
                 }
             } else {
