@@ -1,5 +1,7 @@
+from git import Repo
 
-def _post_save_autocommit(model, os_path, contents_manager, **kwargs):
+
+def _post_save_autocommit(repo, model, os_path, contents_manager, **kwargs):
     """convert notebooks to Python script after save with nbconvert
     replaces `jupyter notebook --script`
     """

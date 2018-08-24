@@ -1,8 +1,10 @@
 import os
 import os.path
 from git import Repo
+from functools import partial
 from notebook.utils import url_path_join
 
+from .hook import _post_save_autocommit
 from .handlers import GetHandler, RestoreHandler
 
 
@@ -20,6 +22,9 @@ def load_jupyter_server_extension(nb_server_app):
     repo_root = os.path.join(os.path.abspath(os.curdir()), '.autoversion')
     if not os.path.exists(repo_root):
         os.mkdir(repo_root)
+        repo = Repo.init(repo_root, bare=True)
+    else:
+        repo = Repo(repo_root)
 
     ignore_root = os.path.join(os.path.abspath(os.curdir()), '.gitignore')
     if os.path.exists(ignore_root):
@@ -37,6 +42,9 @@ def load_jupyter_server_extension(nb_server_app):
 
     print('Installing jupyterlab_autoversion handler on path %s' % url_path_join(base_url, 'autoversion'))
 
-    context = {'root': repo_root}
+    context = {'repo': repo}
     web_app.add_handlers(host_pattern, [(url_path_join(base_url, 'autoversion/get'), GetHandler, context)])
     web_app.add_handlers(host_pattern, [(url_path_join(base_url, 'autoversion/restore'), RestoreHandler, context)])
+
+    nb_server_app.config.ContentsManager.post_save_hook = partial(_post_save_autocommit, repo=repo)
+    nb_server_app.config.FileContentsManager.post_save_hook = partial(_post_save_autocommit, repo=repo)
