@@ -82,7 +82,7 @@ class AutoversionWidget extends Widget {
                     option.value = record;
                     let timestamp = new Date(record[1]);
 
-                    option.textContent = timestamp + '--' + record[0].slice(0, 6    );
+                    option.textContent = timestamp + ' -- ' + record[0].slice(0, 6    );
                     type.appendChild(option);
                 }
                 console.log(versions)
@@ -147,7 +147,7 @@ function revision(app: JupyterLab, context: DocumentRegistry.IContext<INotebookM
                 let data = JSON.parse(xhr.responseText);
                 console.log(data);
                 if(data['version'].toString() === version) {
-                    context.model.fromString(data['nb']);
+                    context.model.fromJSON(data['nb']);
                 }
             } else {
                 console.error(xhr.statusText);

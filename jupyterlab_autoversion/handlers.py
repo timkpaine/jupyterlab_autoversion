@@ -33,7 +33,7 @@ class RestoreHandler(IPythonHandler):
     def get(self):
         path = self.get_argument('path', '')
         id = self.get_argument('id', '')
-        version = self.get_argument('version', 0)
+        version = int(self.get_argument('version', 0))
 
         if not id and not path:
             self.finish({'id': '', 'version': -1, 'contents': {}})
