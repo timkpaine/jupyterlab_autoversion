@@ -28,6 +28,7 @@
     "@jupyterlab/docmanager": "^0.18.0",
     "@jupyterlab/filebrowser": "^0.18.0",
     "@jupyterlab/launcher": "^0.18.0",
+    "@jupyterlab/notebook": "^0.18.0",
     "@jupyterlab/mainmenu": "^0.7.0",
     "@phosphor/disposable": "^1.1.2"
   },

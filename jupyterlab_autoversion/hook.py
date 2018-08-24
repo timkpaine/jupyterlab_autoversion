@@ -28,15 +28,8 @@ def _post_save_autocommit(repo, model, *args, **kwargs):
         with open(nb, 'w') as fp:
             fp.write(json.dumps(model['content']))
 
-        last = os.path.join(path, 'LAST')
+        last = len([x for x in repo.tags if id in x.name])
 
-        if os.path.exists(last):
-            with open(last, 'r') as fp:
-                version = int(fp.read().strip())
-        else:
-            version = -1
-        with open(last, 'w') as fp:
-            fp.write(str(version+1))
-
-        repo.index.add([nb, last])
-        repo.index.commit('%s-%d' % (id, version+1))
+        repo.index.add([nb])
+        repo.index.commit('%s-%d' % (id, last))
+        repo.create_tag('%s-%d' % (id, last))
