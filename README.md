@@ -2,6 +2,8 @@
 Automatically version jupyter notebooks in JupyterLab
 
 [![Build Status](https://travis-ci.org/timkpaine/jupyterlab_autoversion.svg?branch=master)](https://travis-ci.org/timkpaine/jupyterlab_autoversion)
+[![GitHub issues](https://img.shields.io/github/issues/timkpaine/jupyterlab_autoversion.svg)]()
+[![codecov](https://codecov.io/gh/timkpaine/jupyterlab_autoversion/branch/master/graph/badge.svg)](https://codecov.io/gh/timkpaine/jupyterlab_autoversion)
 [![PyPI](https://img.shields.io/pypi/l/jupyterlab_autoversion.svg)](https://pypi.python.org/pypi/jupyterlab_autoversion)
 [![PyPI](https://img.shields.io/pypi/v/jupyterlab_autoversion.svg)](https://pypi.python.org/pypi/jupyterlab_autoversion)
 [![npm](https://img.shields.io/npm/v/jupyterlab_autoversion.svg)](https://www.npmjs.com/package/jupyterlab_autoversion)
