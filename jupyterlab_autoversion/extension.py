@@ -34,10 +34,10 @@ def load_jupyter_server_extension(nb_server_app):
                 if '.autoversion' in line:
                     add = False
             if add:
-                fp.write('.autoversion\n')
+                fp.write('\n.autoversion\n')
     else:
         with open(ignore_root, 'w') as fp:
-            fp.write('.autoversion\n')
+            fp.write('\n.autoversion\n')
 
     print('Installing jupyterlab_autoversion handler on path %s' % url_path_join(base_url, 'autoversion'))
 
