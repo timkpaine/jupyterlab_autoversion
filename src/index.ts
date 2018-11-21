@@ -53,7 +53,7 @@ const extension: JupyterLabPlugin<void> = {
 };
 
 
-
+export
 class AutoversionWidget extends Widget {
   constructor(app: JupyterLab, context: DocumentRegistry.IContext<INotebookModel>, id: string, path: string) {
     let body = document.createElement('div');
@@ -113,7 +113,7 @@ class AutoversionWidget extends Widget {
 
 }
 
-
+export
 function autoversion(app: JupyterLab, context: DocumentRegistry.IContext<INotebookModel>): void {
     let model = context.model;
     console.log(model);
@@ -135,6 +135,7 @@ function autoversion(app: JupyterLab, context: DocumentRegistry.IContext<INotebo
 
 }
 
+export
 function revision(app: JupyterLab, context: DocumentRegistry.IContext<INotebookModel>, id: string, version: string): void {
     console.log(id);
     console.log(version);
@@ -160,6 +161,7 @@ function revision(app: JupyterLab, context: DocumentRegistry.IContext<INotebookM
     xhr.send(null);
 }
 
+export
 class AutoversionExtension implements DocumentRegistry.IWidgetExtension<NotebookPanel, INotebookModel> {
 
   constructor(app: JupyterLab) {
@@ -207,3 +209,4 @@ function activate(app: JupyterLab,
 
 
 export default extension;
+export {activate as _activate};
