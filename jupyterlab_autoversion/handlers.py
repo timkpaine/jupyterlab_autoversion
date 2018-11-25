@@ -16,6 +16,7 @@ class GetHandler(IPythonHandler):
 
         if not id and not path:
             self.finish({'id': '', 'last': ''})
+            return
 
         if not id and path:
             sha = hashlib.sha256()
@@ -24,6 +25,7 @@ class GetHandler(IPythonHandler):
 
         last = list(reversed([[x.commit.hexsha, x.commit.authored_date*1000] + x.name.split('-') for x in self.repo.tags if id in x.name]))
         self.finish({'id': id, 'versions': last})
+        return
 
 
 class RestoreHandler(IPythonHandler):
@@ -37,6 +39,7 @@ class RestoreHandler(IPythonHandler):
 
         if not id and not path:
             self.finish({'id': '', 'version': -1, 'contents': {}})
+            return
 
         if not id and path:
             sha = hashlib.sha256()
