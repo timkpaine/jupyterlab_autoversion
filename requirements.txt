@@ -1,2 +1,2 @@
-gitpython
-jupyterlab
+GitPython>=2.1.11
+jupyterlab>=0.35.4

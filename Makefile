@@ -8,6 +8,16 @@ test: ## run the tests for travis CI
 	@ python3 -m nose -v tests --with-coverage --cover-erase --cover-package=`find jupyterlab_autoversion -name "*.py" | sed "s=\./==g" | sed "s=/=.=g" | sed "s/\.py//g" | tr '\n' ',' | rev | cut -c2- | rev`
 	npm install && npm run test
 
+lint: ## run linter
+	pylint jupyterlab_autoversion || echo
+	flake8 jupyterlab_autoversion 
+
+annotate: ## MyPy type annotation check
+	mypy -s jupyterlab_autoversion
+
+annotate_l: ## MyPy type annotation check - count only
+	mypy -s jupyterlab_autoversion | wc -l 
+
 clean: ## clean the repository
 	find . -name "__pycache__" | xargs  rm -rf 
 	find . -name "*.pyc" | xargs rm -rf 
