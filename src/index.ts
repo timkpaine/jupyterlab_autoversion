@@ -42,6 +42,10 @@ import {
   Widget
 } from '@phosphor/widgets';
 
+import {
+  request, RequestResult
+} from './request';
+
 import '../style/index.css';
 
 const extension: JupyterLabPlugin<void> = {
@@ -70,32 +74,20 @@ class AutoversionWidget extends Widget {
     let type = document.createElement('select');
     type.appendChild(default_none);
 
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", PageConfig.getBaseUrl() + "autoversion/get?id=" + id + "&path=" + path, true);
+    request('get', PageConfig.getBaseUrl() + "autoversion/get?id=" + id + "&path=" + path).then((res: RequestResult) => {
+      if(res.ok){
+        let versions = res.json() as {[key: string]: string};
+        for (let record of versions['versions']){
+          let option = document.createElement('option');
+          option.value = record;
+          let timestamp = new Date(record[1]);
 
-    xhr.onload = function (e:any) {
-        if (xhr.readyState === 4) {
-            if (xhr.status === 200) {
-                let versions = JSON.parse(xhr.responseText);
-                for (let record of versions['versions']){
-                    let option = document.createElement('option');
-                    option.value = record;
-                    let timestamp = new Date(record[1]);
-
-                    option.textContent = timestamp + ' -- ' + record[0].slice(0, 6    );
-                    type.appendChild(option);
-                }
-                console.log(versions)
-            } else {
-                console.error(xhr.statusText);
-            }
+          option.textContent = timestamp + ' -- ' + record[0].slice(0, 6    );
+          type.appendChild(option);
         }
-    };
-    xhr.onerror = function (e) {
-        console.error(xhr.statusText);
-    };
-    xhr.send(null);
-
+        console.log(versions)
+      }
+    });
     type.style.marginBottom = '15px';
     type.style.minHeight = '25px';
     body.appendChild(type);
@@ -139,26 +131,16 @@ export
 function revision(app: JupyterLab, context: DocumentRegistry.IContext<INotebookModel>, id: string, version: string): void {
     console.log(id);
     console.log(version);
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", PageConfig.getBaseUrl() + "autoversion/restore?id=" + id + "&path=" + context.path + '&version=' + version, true);
 
-    xhr.onload = function (e:any) {
-        if (xhr.readyState === 4) {
-            if (xhr.status === 200) {
-                let data = JSON.parse(xhr.responseText);
-                console.log(data);
-                if(data['version'].toString() === version) {
-                    context.model.fromJSON(data['nb']);
-                }
-            } else {
-                console.error(xhr.statusText);
-            }
+    request('get', PageConfig.getBaseUrl() + "autoversion/restore?id=" + id + "&path=" + context.path + '&version=' + version).then((res:RequestResult)=>{
+      if(res.ok){
+        let data = res.json() as {[key: string]: string};
+        console.log(data);
+        if(data['version'].toString() === version) {
+          context.model.fromJSON(data['nb']);
         }
-    };
-    xhr.onerror = function (e) {
-        console.error(xhr.statusText);
-    };
-    xhr.send(null);
+      }      
+    })
 }
 
 export

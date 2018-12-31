@@ -20,7 +20,6 @@ setup(
     author='Tim Paine',
     author_email='t.paine154@gmail.com',
     license='Apache 2.0',
-    install_requires=requires,
 
     classifiers=[
         'Development Status :: 3 - Alpha',
@@ -37,4 +36,6 @@ setup(
     packages=find_packages(exclude=['tests', ]),
     include_package_data=True,
     zip_safe=False,
+    install_requires=requires,
+    extras_require={'dev': requires + ['nose2', 'pylint', 'flake8']}
 )
