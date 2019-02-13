@@ -2,11 +2,10 @@ testjs: ## Clean and Make js tests
 	npm run test
 
 testpy: ## Clean and Make unit tests
-	python3 -m nose2 -v tests --with-coverage --coverage=jupyterlab_autoversion
+	python3 -m pytest tests --cov=jupyterlab_autoversion
 
 test: lint ## run the tests for travis CI
-	@ python3 -m nose2 -v tests --with-coverage --coverage=jupyterlab_autoversion
-	npm install && npm run test
+	@ python3 -m pytest tests --cov=jupyterlab_autoversion
 
 lint: ## run linter
 	pylint jupyterlab_autoversion || echo
