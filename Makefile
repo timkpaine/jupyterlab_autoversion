@@ -8,8 +8,8 @@ test: lint ## run the tests for travis CI
 	@ python3 -m pytest -v tests --cov=jupyterlab_autoversion
 
 lint: ## run linter
-	pylint jupyterlab_autoversion || echo
 	flake8 jupyterlab_autoversion 
+	yarn lint
 
 annotate: ## MyPy type annotation check
 	mypy -s jupyterlab_autoversion
