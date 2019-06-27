@@ -19,7 +19,7 @@ import {
 } from "@jupyterlab/notebook";
 
 import {
-  ILayoutRestorer, JupyterLab, JupyterLabPlugin,
+  ILayoutRestorer, JupyterFrontEnd, JupyterFrontEndPlugin,
 } from "@jupyterlab/application";
 
 import {
@@ -50,7 +50,7 @@ import "../style/index.css";
 
 // tslint:disable: variable-name
 
-const extension: JupyterLabPlugin<void> = {
+const extension: JupyterFrontEndPlugin<void> = {
   activate,
   autoStart: true,
   id: "jupyterlab_autoversion",
@@ -60,7 +60,7 @@ const extension: JupyterLabPlugin<void> = {
 
 export
 class AutoversionWidget extends Widget {
-  constructor(app: JupyterLab, context: DocumentRegistry.IContext<INotebookModel>, id: string, path: string) {
+  constructor(app: JupyterFrontEnd, context: DocumentRegistry.IContext<INotebookModel>, id: string, path: string) {
     const body = document.createElement("div");
     body.style.display = "flex";
     body.style.flexDirection = "column";
@@ -107,7 +107,7 @@ class AutoversionWidget extends Widget {
 }
 
 export
-function autoversion(app: JupyterLab, context: DocumentRegistry.IContext<INotebookModel>): void {
+function autoversion(app: JupyterFrontEnd, context: DocumentRegistry.IContext<INotebookModel>): void {
     const model = context.model;
     const id = (model.metadata as any).autoversion || "";
 
@@ -128,7 +128,7 @@ function autoversion(app: JupyterLab, context: DocumentRegistry.IContext<INotebo
 }
 
 export
-function revision(app: JupyterLab,
+function revision(app: JupyterFrontEnd,
                   context: DocumentRegistry.IContext<INotebookModel>,
                   id: string,
                   version: string): void {
@@ -148,9 +148,9 @@ function revision(app: JupyterLab,
 export
 class AutoversionExtension implements DocumentRegistry.IWidgetExtension<NotebookPanel, INotebookModel> {
 
-  public readonly app: JupyterLab;
+  public readonly app: JupyterFrontEnd;
 
-  constructor(app: JupyterLab) {
+  constructor(app: JupyterFrontEnd) {
     this.app = app;
   }
 
@@ -169,7 +169,7 @@ class AutoversionExtension implements DocumentRegistry.IWidgetExtension<Notebook
   }
 }
 
-function activate(app: JupyterLab,
+function activate(app: JupyterFrontEnd,
                   docManager: IDocumentManager,
                   palette: ICommandPalette,
                   restorer: ILayoutRestorer,
