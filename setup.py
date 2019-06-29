@@ -16,7 +16,6 @@ setup(
     description='Automatically version notebooks from JupyterLab',
     long_description=long_description,
     url='https://github.com/timkpaine/jupyterlab_autoversion',
-    download_url='https://github.com/timkpaine/jupyterlab_autoversion/archive/v0.0.4.tar.gz',
     author='Tim Paine',
     author_email='t.paine154@gmail.com',
     license='Apache 2.0',
