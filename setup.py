@@ -12,7 +12,7 @@ with open(path.join(here, 'requirements.txt'), encoding='utf-8') as f:
 
 setup(
     name='jupyterlab_autoversion',
-    version='0.0.4',
+    version='0.1.0',
     description='Automatically version notebooks from JupyterLab',
     long_description=long_description,
     url='https://github.com/timkpaine/jupyterlab_autoversion',
