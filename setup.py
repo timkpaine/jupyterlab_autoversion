@@ -47,7 +47,8 @@ cmdclass['js'] = combine_commands(
 setup(
     name=name,
     version=version,
-    description='Automatically version notebooks from JupyterLab',    long_description=long_description,
+    description='Automatically version notebooks from JupyterLab',
+    long_description=long_description,
     url='https://github.com/timkpaine/jupyterlab_autoversion',
     author='Tim Paine',
     author_email='t.paine154@gmail.com',
