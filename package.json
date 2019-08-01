@@ -2,23 +2,38 @@
   "name": "jupyterlab_autoversion",
   "version": "0.1.0",
   "description": "A JupyterLab extension.",
+  "author": "Tim Paine",
+  "main": "lib/index.js",
   "keywords": [
     "jupyter",
     "jupyterlab",
     "jupyterlab-extension"
   ],
-  "author": "Tim Paine",
+  "scripts": {
+    "build": "tsc",
+    "build:lab": "rimraf lab-dist && mkdirp lab-dist && cd lab-dist && npm pack ..",
+    "build:all": "npm run build && npm run build:lab",
+    "clean": "rimraf lib",
+    "lint": "./node_modules/.bin/tslint './src/*.ts'",
+    "prepublishOnly": "npm run build",
+    "test": "jest --coverage --collectCoverageFrom=src/*.{ts}"
+  },
   "files": [
     "lib/**/*.{d.ts,eot,gif,html,jpg,js,js.map,json,png,svg,woff2,ttf}",
     "style/**/*.css"
   ],
-  "main": "lib/index.js",
-  "scripts": {
-    "build": "tsc",
-    "clean": "rimraf lib",
-    "lint": "./node_modules/.bin/tslint 'src/*.ts'",
-    "prepublish": "npm run build",
-    "test": "jest --coverage --collectCoverageFrom=src/*.{ts}"
+  "jupyterlab": {
+    "extension": true,
+    "discovery": {
+      "server": {
+        "base": {
+          "name": "jupyterlab_celltests"
+        },
+        "managers": [
+          "pip"
+        ]
+      }
+    }
   },
   "dependencies": {
     "@jupyterlab/application": "^1.0.0",
@@ -32,15 +47,15 @@
     "@phosphor/disposable": "^1.1.2"
   },
   "devDependencies": {
-    "@types/jest": "^23.3.9",
-    "jest": "^23.6.0",
+    "@babel/preset-env": "^7.5.5",
+    "@types/jest": "^24.0.4",
+    "babel-jest": "^24.8.0",
+    "jest": "^24.1.0",
     "jest-transform-css": "^2.0.0",
+    "mkdirp": "^0.5.1",
     "rimraf": "^2.6.1",
     "ts-jest": "^23.10.4",
-    "tslint": "^5.16.0",
+    "tslint": "^5.14.0",
     "typescript": "^3.1.6"
-  },
-  "jupyterlab": {
-    "extension": true
   }
 }

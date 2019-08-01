@@ -1,11 +1,12 @@
 testjs: ## Clean and Make js tests
-	npm run test
+	yarn test
 
 testpy: ## Clean and Make unit tests
 	python3 -m pytest -v tests --cov=jupyterlab_autoversion
 
 test: lint ## run the tests for travis CI
 	@ python3 -m pytest -v tests --cov=jupyterlab_autoversion
+	yarn test
 
 lint: ## run linter
 	flake8 jupyterlab_autoversion 
@@ -22,22 +23,22 @@ clean: ## clean the repository
 	find . -name "*.pyc" | xargs rm -rf 
 	find . -name ".ipynb_checkpoints" | xargs  rm -rf 
 	rm -rf .coverage cover htmlcov logs build dist *.egg-info lib node_modules
-	# make -C ./docs clean
 
 install:  ## install to site-packages
-	python3 setup.py install
+	pip3 install .
 
 serverextension: install ## enable serverextension
 	jupyter serverextension enable --py jupyterlab_autoversion
 
-labextension: install ## enable labextension
+js:  ## build javascript
+	yarn
+	yarn build
+
+labextension: js ## enable labextension
 	jupyter labextension install .
 
-dist:  ## dist to pypi
-	python3 setup.py sdist upload -r pypi
-
-# docs:  ## make documentation
-# 	make -C ./docs html
+dist: clean  ## dist to pypi
+	python3 setup.py sdist bdist_wheel && twine upload -r pypi dist/*
 
 # Thanks to Francoise at marmelab.com for this
 .DEFAULT_GOAL := help
