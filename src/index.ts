@@ -117,7 +117,7 @@ function autoversion(app: JupyterFrontEnd, context: DocumentRegistry.IContext<IN
       focusNodeSelector: "input",
       title: "Autoversion:",
       }).then((result) => {
-        if (result.button.label === "CANCEL") {
+        if (result.button.label === "Cancel") {
             return;
         } else {
             const val = result.value.split(",");
