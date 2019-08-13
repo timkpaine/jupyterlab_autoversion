@@ -27,7 +27,7 @@
     "discovery": {
       "server": {
         "base": {
-          "name": "jupyterlab_celltests"
+          "name": "jupyterlab_autoversion"
         },
         "managers": [
           "pip"
