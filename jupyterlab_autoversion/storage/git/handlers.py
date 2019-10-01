@@ -6,7 +6,7 @@ from git import Git
 from notebook.base.handlers import IPythonHandler
 
 
-class GetHandler(IPythonHandler):
+class GitGetHandler(IPythonHandler):
     def initialize(self, repo):
         self.repo = repo
 
@@ -28,7 +28,7 @@ class GetHandler(IPythonHandler):
         return
 
 
-class RestoreHandler(IPythonHandler):
+class GitRestoreHandler(IPythonHandler):
     def initialize(self, repo):
         self.repo = repo
 

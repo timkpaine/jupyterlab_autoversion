@@ -4,7 +4,7 @@ import os
 import os.path
 
 
-def _post_save_autocommit(repo, model, *args, **kwargs):
+def post_save_autocommit_git(repo, model, *args, **kwargs):
     """convert notebooks to Python script after save with nbconvert
     replaces `jupyter notebook --script`
     """

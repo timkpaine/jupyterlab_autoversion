@@ -1,11 +1,4 @@
-import os
-import os.path
-from git import Repo
-from functools import partial
 from notebook.utils import url_path_join
-
-from .hook import _post_save_autocommit
-from .handlers import GetHandler, RestoreHandler
 
 
 def load_jupyter_server_extension(nb_server_app):
@@ -19,30 +12,31 @@ def load_jupyter_server_extension(nb_server_app):
     base_url = web_app.settings['base_url']
     host_pattern = '.*$'
 
-    repo_root = os.path.join(os.path.abspath(os.curdir), '.autoversion')
-    if not os.path.exists(repo_root):
-        os.mkdir(repo_root)
-        repo = Repo.init(repo_root)
-    else:
-        repo = Repo(repo_root)
+    backend = nb_server_app.config.get('JupyterLabAutoversion', {}).get('backend', 'git')
 
-    ignore_root = os.path.join(os.path.abspath(os.curdir), '.gitignore')
-    if os.path.exists(ignore_root):
-        with open(ignore_root, 'r+') as fp:
-            add = True
-            for line in fp:
-                if '.autoversion' in line:
-                    add = False
-            if add:
-                fp.write('\n.autoversion\n')
+    if backend not in ('git', 's3', 'sql'):
+        raise Exception('jupyterlab_autoversion backend not recognized: {}'.format(backend))
+
+    if backend == 's3':
+        from .storage.s3 import initialize
+    elif backend == 'sql':
+        from .storage.sql import initialize
     else:
-        with open(ignore_root, 'w') as fp:
-            fp.write('\n.autoversion\n')
+        from .storage.git import initialize
+
+    hook, handlers = initialize(nb_server_app)
 
     print('Installing jupyterlab_autoversion handler on path %s' % url_path_join(base_url, 'autoversion'))
 
-    context = {'repo': repo}
-    web_app.add_handlers(host_pattern, [(url_path_join(base_url, 'autoversion/get'), GetHandler, context)])
-    web_app.add_handlers(host_pattern, [(url_path_join(base_url, 'autoversion/restore'), RestoreHandler, context)])
+    web_app.add_handlers(host_pattern, handlers)
 
-    nb_server_app.contents_manager.pre_save_hook = partial(_post_save_autocommit, repo=repo)
+    if callable(nb_server_app.contents_manager.pre_save_hook):
+        # grab existing hook, and add on top
+        temp_hook = nb_server_app.contents_manager.pre_save_hook
+
+        def _hook(*args, **kwargs):
+            temp_hook(*args, **kwargs)
+            hook(*args, **kwargs)
+        nb_server_app.contents_manager.pre_save_hook = _hook
+    else:
+        nb_server_app.contents_manager.pre_save_hook = hook

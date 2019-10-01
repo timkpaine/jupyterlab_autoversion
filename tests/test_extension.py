@@ -1,4 +1,3 @@
-# for Coverage
 from mock import patch, MagicMock
 from jupyterlab_autoversion.extension import load_jupyter_server_extension
 
@@ -28,4 +27,5 @@ class TestExtension:
 
         m.web_app.settings = {}
         m.web_app.settings['base_url'] = '/test'
+        m.config = {"JupyterLabAutoversion": {"backend": "git"}}
         load_jupyter_server_extension(m)

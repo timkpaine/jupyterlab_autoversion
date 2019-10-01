@@ -4,30 +4,12 @@ import os.path
 import tornado.web
 from git import Repo
 from mock import patch, MagicMock
-from jupyterlab_autoversion.handlers import GetHandler, RestoreHandler
+from jupyterlab_autoversion.storage.git.handlers import GitGetHandler, GitRestoreHandler
 from tempfile import TemporaryDirectory
 
 
 class TestExtension:
-    def setup(self):
-        pass
-        # setup() before each test method
-
-    def teardown(self):
-        pass
-        # teardown() after each test method
-
-    @classmethod
-    def setup_class(cls):
-        pass
-        # setup_class() before any methods in this class
-
-    @classmethod
-    def teardown_class(cls):
-        pass
-        # teardown_class() after any methods in this class
-
-    def test_get_handler(self):
+    def test_git_get_handler(self):
         app = tornado.web.Application()
         m = MagicMock()
 
@@ -44,7 +26,7 @@ class TestExtension:
                 if name == 'path':
                     return ''
 
-            h = GetHandler(app, m, repo=repo)
+            h = GitGetHandler(app, m, repo=repo)
             h._transforms = []
             h.get_argument = get_argument
             h.get()
@@ -55,7 +37,7 @@ class TestExtension:
                 if name == 'path':
                     return 'test'
 
-            h = GetHandler(app, m, repo=repo)
+            h = GitGetHandler(app, m, repo=repo)
             h._transforms = []
             h.get_argument = get_argument
             h.get()
@@ -66,12 +48,12 @@ class TestExtension:
                 if name == 'path':
                     return 'test'
 
-            h = GetHandler(app, m, repo=repo)
+            h = GitGetHandler(app, m, repo=repo)
             h._transforms = []
             h.get_argument = get_argument
             h.get()
 
-    def test_restore(self):
+    def test_git_restore(self):
         app = tornado.web.Application()
         m = MagicMock()
 
@@ -90,7 +72,7 @@ class TestExtension:
                 else:
                     return 0
 
-            h = RestoreHandler(app, m, repo=repo)
+            h = GitRestoreHandler(app, m, repo=repo)
             h._transforms = []
             h.get_argument = get_argument
             h.get()
@@ -103,7 +85,7 @@ class TestExtension:
                 else:
                     return 0
 
-            h = RestoreHandler(app, m, repo=repo)
+            h = GitRestoreHandler(app, m, repo=repo)
             h._transforms = []
             h.get_argument = get_argument
             h.get()
@@ -116,7 +98,7 @@ class TestExtension:
                 else:
                     return 0
 
-            h = RestoreHandler(app, m, repo=repo)
+            h = GitRestoreHandler(app, m, repo=repo)
             h._transforms = []
             h.get_argument = get_argument
             h.get()
