@@ -45,6 +45,7 @@
     "@jupyterlab/mainmenu": "^1.0.0",
     "@jupyterlab/notebook": "^1.0.0",
     "@phosphor/disposable": "^1.1.2",
+    "isomorphic-fetch": "^2.2.1",
     "requests-helper": "^0.1.1"
   },
   "devDependencies": {
