@@ -7,10 +7,8 @@ from jupyter_packaging import (
     combine_commands, ensure_python, get_version
 )
 
+ensure_python(('2.7', '>=3.7'))
 pjoin = path.join
-
-ensure_python(('2.7', '>=3.3'))
-
 name = 'jupyterlab_autoversion'
 here = path.abspath(path.dirname(__file__))
 version = get_version(pjoin(here, name, '_version.py'))
@@ -59,21 +57,18 @@ setup(
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.3',
-        'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
         'Framework :: Jupyter',
     ],
 
     cmdclass=cmdclass,
-
     keywords='jupyter jupyterlab',
     packages=find_packages(exclude=['tests', ]),
     install_requires=requires,
     extras_require={
-        'dev': ['pytest', 'pytest-cov', 'pylint', 'flake8', 'bumpversion']
+        'dev': ['pytest', 'pytest-cov', 'pylint', 'flake8', 'bumpversion', 'autopep8']
     },
     include_package_data=True,
     zip_safe=False,

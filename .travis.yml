@@ -1,14 +1,30 @@
-language: python
+dist: xenial
+
 cache: 
   - pip
   - npm
 
-python:
-  - "3.6"
+matrix:
+  fast_finish: true
+  include:
+    - python: "3.7"
+      language: python
+      cache: pip
+
+    - cache: pip
+      os: osx
+      osx_image: xcode11.2
+
+addons:
+  homebrew:
+    update: true
+    packages:
+      - python
 
 install:
+    - pip install -e .[dev]
     - pip install -r requirements.txt
-    - pip install -U pytest pytest-cov flake8 pylint codecov
+    - pip install -U pytest pytest-cov flake8 codecov
     - yarn
 
 script:
