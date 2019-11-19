@@ -24,9 +24,8 @@ addons:
       - python
 
 install:
-    - pip install -e .[dev]
-    - pip install -r requirements.txt
-    - pip install -U pytest pytest-cov flake8 codecov
+    - python3 -m pip install -e .[dev]
+    - python3 -m pip install -r requirements.txt
     - yarn
 
 script:
