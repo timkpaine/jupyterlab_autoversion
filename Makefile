@@ -12,6 +12,10 @@ lint: ## run linter
 	flake8 jupyterlab_autoversion 
 	yarn lint
 
+fix:  ## run autopep8/tslint fix
+	autopep8 --in-place -r -a -a jupyterlab_celltests/
+	./node_modules/.bin/tslint --fix src/*
+
 annotate: ## MyPy type annotation check
 	mypy -s jupyterlab_autoversion
 
