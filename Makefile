@@ -26,7 +26,8 @@ clean: ## clean the repository
 	find . -name "__pycache__" | xargs  rm -rf 
 	find . -name "*.pyc" | xargs rm -rf 
 	find . -name ".ipynb_checkpoints" | xargs  rm -rf 
-	rm -rf .coverage cover htmlcov logs build dist *.egg-info lib node_modules
+	rm -rf coverage lab-dist cover htmlcov logs build dist *.egg-info lib node_modules *.log
+	git clean -fd
 
 install:  ## install to site-packages
 	pip3 install .
