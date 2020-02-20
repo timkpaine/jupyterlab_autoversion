@@ -28,6 +28,11 @@ clean: ## clean the repository
 	find . -name ".ipynb_checkpoints" | xargs  rm -rf 
 	rm -rf coverage lab-dist cover htmlcov logs build dist *.egg-info lib node_modules *.log
 	git clean -fd
+	make -C ./docs clean
+
+docs:  ## make documentation
+	make -C ./docs html
+	open ./docs/_build/html/index.html
 
 install:  ## install to site-packages
 	pip3 install .
