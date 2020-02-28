@@ -4,7 +4,7 @@ build:
 python:
   version: 3
   install:
-    - requirements: doc/requirements.txt
+    - requirements: docs/requirements.txt
     - method: pip
       path: .
   system_packages: true
