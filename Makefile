@@ -13,7 +13,7 @@ lint: ## run linter
 	yarn lint
 
 fix:  ## run autopep8/tslint fix
-	autopep8 --in-place -r -a -a jupyterlab_celltests/
+	autopep8 --in-place -r -a -a jupyterlab_autoversion/
 	./node_modules/.bin/tslint --fix src/*
 
 annotate: ## MyPy type annotation check
