@@ -4,11 +4,11 @@ from os import path
 
 from jupyter_packaging import (
     create_cmdclass, install_npm, ensure_targets,
-    combine_commands, ensure_python, get_version
+    combine_commands, get_version
 )
 
-ensure_python(('2.7', '>=3.7'))
 pjoin = path.join
+
 name = 'jupyterlab_autoversion'
 here = path.abspath(path.dirname(__file__))
 version = get_version(pjoin(here, name, '_version.py'))
@@ -45,8 +45,9 @@ cmdclass['js'] = combine_commands(
 setup(
     name=name,
     version=version,
-    description='Automatically version notebooks from JupyterLab',
+    description='Cell-by-cell tests for JupyterLab',
     long_description=long_description,
+    long_description_content_type='text/markdown',
     url='https://github.com/timkpaine/jupyterlab_autoversion',
     author='Tim Paine',
     author_email='t.paine154@gmail.com',
@@ -54,8 +55,6 @@ setup(
 
     classifiers=[
         'Development Status :: 3 - Alpha',
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
@@ -64,11 +63,15 @@ setup(
     ],
 
     cmdclass=cmdclass,
+
     keywords='jupyter jupyterlab',
     packages=find_packages(exclude=['tests', ]),
     install_requires=requires,
     extras_require={
-        'dev': requires + ['pytest', 'pytest-cov', 'pylint', 'flake8', 'bumpversion', 'autopep8', 'mock']
+        'dev': ['bump2version',  # bumpversion won't make the right git tag
+                'autopep8',
+                'pytest-cov>=2.6.1',
+                'mock']
     },
     include_package_data=True,
     zip_safe=False,

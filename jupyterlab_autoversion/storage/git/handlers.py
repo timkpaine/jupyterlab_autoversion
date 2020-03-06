@@ -23,7 +23,7 @@ class GitGetHandler(IPythonHandler):
             sha.update(path.encode())
             id = sha.hexdigest()
 
-        last = list(reversed([[x.commit.hexsha, x.commit.authored_date*1000] + x.name.split('-') for x in self.repo.tags if id in x.name]))
+        last = list(reversed([[x.commit.hexsha, x.commit.authored_date * 1000] + x.name.split('-') for x in self.repo.tags if id in x.name]))
         self.finish({'id': id, 'versions': last})
         return
 
