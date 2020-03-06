@@ -46,7 +46,7 @@
     "@jupyterlab/notebook": "^1.0.0",
     "@phosphor/disposable": "^1.1.2",
     "isomorphic-fetch": "^2.2.1",
-    "requests-helper": "^0.1.1"
+    "requests-helper": "^0.1.5"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.5.5",

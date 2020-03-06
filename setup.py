@@ -45,7 +45,7 @@ cmdclass['js'] = combine_commands(
 setup(
     name=name,
     version=version,
-    description='Cell-by-cell tests for JupyterLab',
+    description='Automatically version jupyter notebooks on save',
     long_description=long_description,
     long_description_content_type='text/markdown',
     url='https://github.com/timkpaine/jupyterlab_autoversion',
@@ -69,7 +69,9 @@ setup(
     install_requires=requires,
     extras_require={
         'dev': ['bump2version',  # bumpversion won't make the right git tag
+                'flake8',
                 'autopep8',
+                'pytest',
                 'pytest-cov>=2.6.1',
                 'mock']
     },
