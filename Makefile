@@ -3,7 +3,6 @@ testjs: ## Clean and Make js tests
 
 testpy: ## Clean and Make unit tests
 	python3.7 -m pytest -v jupyterlab_autoversion/tests --cov=jupyterlab_autoversion
-	yarn test
 
 tests: lint ## run the tests
 	python3.7 -m pytest -v jupyterlab_autoversion/tests --cov=jupyterlab_autoversion --junitxml=python_junit.xml --cov-report=xml --cov-branch
