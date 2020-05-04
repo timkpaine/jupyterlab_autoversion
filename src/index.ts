@@ -1,6 +1,6 @@
 import {
   IDisposable,
-} from "@phosphor/disposable";
+} from "@lumino/disposable";
 
 import {
   Dialog, ICommandPalette, showDialog, ToolbarButton,
@@ -40,7 +40,7 @@ import {
 
 import {
   Widget,
-} from "@phosphor/widgets";
+} from "@lumino/widgets";
 
 import {
   IRequestResult, request,
