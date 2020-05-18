@@ -30,13 +30,13 @@ jobs:
     - bash: npm install -g yarn
       displayName: "Install Yarn"
 
-    - bash: yarn
-      displayName: "Install Deps"
+    - bash: cd js; yarn
+      displayName: "Install JS Dependencies"
 
     - script: |
         python -m pip install --upgrade pip
         pip install -e .[dev]
-      displayName: 'Install dependencies'
+      displayName: 'Install python dependencies'
 
     - script: |
         make lint
@@ -101,13 +101,13 @@ jobs:
     - bash: npm install -g yarn
       displayName: "Install Yarn"
 
-    - bash: yarn
-      displayName: "Install Deps"
+    - bash: cd js; yarn
+      displayName: "Install JS Dependencies"
 
     - script: |
         python -m pip install --upgrade pip
         pip install -e .[dev]
-      displayName: 'Install dependencies'
+      displayName: 'Install python dependencies'
 
     - script: |
         make lint
@@ -150,8 +150,8 @@ jobs:
     - bash: npm install -g yarn
       displayName: "Install Yarn"
 
-    - bash: yarn
-      displayName: "Install Deps"
+    - bash: cd js; yarn
+      displayName: "Install JS Dependencies"
 
     - script: |
         which python > python.txt
@@ -164,7 +164,7 @@ jobs:
     - script: |
         python -m pip install --upgrade pip
         pip install -e .[dev]
-      displayName: 'Install dependencies'
+      displayName: 'Install python dependencies'
 
     - script: |
         make lint
