@@ -65,10 +65,10 @@ jobs:
 
     - task: TwineAuthenticate@0
       inputs:
-        artifactFeeds: jupyter/python-packages
+        artifactFeeds: jupyter/packages-testing
 
     - script: |
-        twine check dist/* && twine upload -r jupyter/python-packages --config-file $(PYPIRC_PATH) dist/*
+        twine check dist/* && twine upload -r jupyter/packages-testing --config-file $(PYPIRC_PATH) dist/*
       displayName: 'Upload packages'
       condition: contains(variables['Build.SourceBranch'], 'tags')  # todo: match "release" style tags only (v...)
 
@@ -76,7 +76,7 @@ jobs:
       inputs:
         command: publish
         publishRegistry: useFeed
-        publishFeed: jupyter/python-packages
+        publishFeed: jupyter/packages-testing
       condition: contains(variables['Build.SourceBranch'], 'tags')  # todo: match "release" style tags only (v...)
 
 - job: 'Mac'
