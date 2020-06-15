@@ -34,7 +34,7 @@ dev_requires = requires + [
 data_spec = [
     # Lab extension installed by default:
     ('share/jupyter/lab/extensions',
-     'js/lab-dist',
+     'lab-dist',
      'jupyterlab_autoversion-*.tgz'),
     # Config to enable server extension by default:
     ('etc/jupyter',
