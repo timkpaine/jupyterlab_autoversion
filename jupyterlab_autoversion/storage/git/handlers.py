@@ -2,6 +2,7 @@ import hashlib
 import os
 import os.path
 import nbformat
+import tornado.web
 from git import Git
 from notebook.base.handlers import IPythonHandler
 
@@ -10,6 +11,7 @@ class GitGetHandler(IPythonHandler):
     def initialize(self, repo):
         self.repo = repo
 
+    @tornado.web.authenticated
     def get(self):
         path = self.get_argument('path', '')
         id = self.get_argument('id', '')
@@ -32,6 +34,7 @@ class GitRestoreHandler(IPythonHandler):
     def initialize(self, repo):
         self.repo = repo
 
+    @tornado.web.authenticated
     def get(self):
         path = self.get_argument('path', '')
         id = self.get_argument('id', '')
