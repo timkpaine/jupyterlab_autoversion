@@ -57,8 +57,10 @@ typings/
 # dotenv environment variables file
 .env
 
+# tsc build artifacts
 package-lock.json
 lib
+*.tsbuildinfo
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

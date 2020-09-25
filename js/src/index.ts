@@ -119,7 +119,10 @@ function autoversion(app: JupyterFrontEnd, context: DocumentRegistry.IContext<IN
     if (result.button.label === "Cancel") {
       return;
     } else {
-      const val = result.value.split(",");
+      // narrow typing of .value since body.getValue != null
+      // @typescript-eslint/no-non-null-assertion
+      const val = result.value!.split(",");
+
       revision(app, context, val[2], val[3]);
     }
   });

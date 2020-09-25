@@ -26,7 +26,8 @@ clean: ## clean the repository
 	find . -name "__pycache__" | xargs  rm -rf
 	find . -name "*.pyc" | xargs rm -rf
 	find . -name ".ipynb_checkpoints" | xargs  rm -rf
-	rm -rf .coverage coverage cover htmlcov logs build dist *.egg-info lib node_modules
+	rm -rf .coverage coverage coverage.xml cover htmlcov python_junit.xml logs build dist lab-dist *.egg-info
+	cd js; rm -rf node_modules lib package-lock.json yarn.lock tsconfig.tsbuildinfo
 	# make -C ./docs clean
 
 docs:  ## make documentation
