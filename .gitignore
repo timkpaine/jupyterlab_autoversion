@@ -80,6 +80,7 @@ eggs/
 lib/
 lib64/
 parts/
+pip-wheel-metadata/
 sdist/
 var/
 wheels/
@@ -169,3 +170,13 @@ yarn.lock
 docs/api
 docs/index.md
 python_junit.xml
+
+# jetbrains ide stuff
+*.iml
+.idea/
+
+# vscode ide stuff
+*.code-workspace
+.history
+.vscode/*
+!.vscode/*.template
