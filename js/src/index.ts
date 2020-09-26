@@ -74,7 +74,7 @@ class AutoversionWidget extends Widget {
     const type = document.createElement("select");
     type.appendChild(default_none);
 
-    request("get",
+    void request("get",
       PageConfig.getBaseUrl() + "autoversion/get?id=" + id + "&path=" + path).then((res: IRequestResult) => {
       if (res.ok) {
         const versions: any = res.json();
@@ -110,7 +110,7 @@ function autoversion(app: JupyterFrontEnd, context: DocumentRegistry.IContext<IN
   const model = context.model;
   const id = (model.metadata as any).autoversion || "";
 
-  showDialog({
+  void showDialog({
     body: new AutoversionWidget(app, context, id, context.path),
     buttons: [Dialog.cancelButton(), Dialog.okButton({ label: "Ok" })],
     focusNodeSelector: "input",
@@ -120,7 +120,7 @@ function autoversion(app: JupyterFrontEnd, context: DocumentRegistry.IContext<IN
       return;
     } else {
       // narrow typing of .value since body.getValue != null
-      // @typescript-eslint/no-non-null-assertion
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       const val = result.value!.split(",");
 
       revision(app, context, val[2], val[3]);
@@ -134,7 +134,7 @@ function revision(app: JupyterFrontEnd,
                   context: DocumentRegistry.IContext<INotebookModel>,
                   id: string,
                   version: string): void {
-  request("get",
+  void request("get",
     PageConfig.getBaseUrl() + "autoversion/restore?id=" +
             id + "&path=" + context.path + "&version=" + version).then((res: IRequestResult) => {
     if (res.ok) {
