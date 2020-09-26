@@ -55,6 +55,9 @@ publish: dist  ## dist to pypi and npm
 	twine check dist/* && twine upload dist/*
 	cd js; npm publish
 
+init_debug:  ## make launch.json from template for debugging in vscode
+	cp .vscode/jupyterlab_venv.env.template .vscode/jupyterlab_venv.env
+	cp .vscode/launch.json.template .vscode/launch.json
 # Thanks to Francoise at marmelab.com for this
 .DEFAULT_GOAL := help
 help:
