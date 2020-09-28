@@ -19,6 +19,24 @@ Enhanced checkpoints, versioned and persistent between restarts on every save
 
 ```bash
 pip install jupyterlab_autoversion
-jupyter labextension install jupyterlab_autoversion
-jupyter serverextension enable --py jupyterlab_autoversion
+jupyter lab build
 ```
+
+# Devlopment
+
+## Dev install
+
+```bash
+# at the root of jupyterlab_autoversion repo
+make dev_install
+```
+
+## Debug Python and Typescript code using vscode
+
+vscode is able to debug both the Python and Typescript sections of this project, and can do so in a single run. However, vscode will first require a specific launch config before you can debug with it. You can create this launch config by first running
+
+```bash
+make init_debug
+```
+
+and then editing the resulting `.vscode/launch.json` and `.vscode/jupyterlab_venv.env` files as needed

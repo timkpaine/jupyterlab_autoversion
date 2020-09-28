@@ -210,6 +210,13 @@ module.exports = {
     ],
     "use-isnan": "error",
     "valid-typeof": "off",
+
+    // TODO: added by update in recommended-requiring-type-checking, should we turn these on?
+    "@typescript-eslint/no-unsafe-assignment": "off",
+    "@typescript-eslint/no-unsafe-call": "off",
+    "@typescript-eslint/no-unsafe-member-access": "off",
+    "@typescript-eslint/restrict-plus-operands": "off",
+
     "@typescript-eslint/tslint/config": [
       "error",
       {

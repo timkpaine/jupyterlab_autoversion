@@ -19,7 +19,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 
 requires = [
     'GitPython>=2.1.11',
-    'jupyterlab>=1.0.0',
+    'jupyterlab>=2.0.0',
 ]
 
 dev_requires = requires + [

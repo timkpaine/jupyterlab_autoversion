@@ -1,58 +1,74 @@
+PYTHON := python
+YARN := yarn
+
 testjs: ## Clean and Make js tests
-	cd js; yarn test
+	cd js; ${YARN} test
 
 testpy: ## Clean and Make unit tests
-	python3.7 -m pytest -v jupyterlab_autoversion/tests --cov=jupyterlab_autoversion
+	${PYTHON} -m pytest -v jupyterlab_autoversion/tests --cov=jupyterlab_autoversion
 
 tests: lint ## run the tests
-	python3.7 -m pytest -v jupyterlab_autoversion/tests --cov=jupyterlab_autoversion --junitxml=python_junit.xml --cov-report=xml --cov-branch
-	cd js; yarn test
+	${PYTHON} -m pytest -v jupyterlab_autoversion/tests --cov=jupyterlab_autoversion --junitxml=python_junit.xml --cov-report=xml --cov-branch
+	cd js; ${YARN} test
 
 lint: ## run linter
-	flake8 jupyterlab_autoversion setup.py
-	cd js; yarn lint
+	${PYTHON} -m flake8 jupyterlab_autoversion setup.py
+	cd js; ${YARN} lint
 
 fix:  ## run autopep8/tslint fix
-	autopep8 --in-place -r -a -a jupyterlab_autoversion/
-	cd js; yarn fix
+	${PYTHON} -m autopep8 --in-place -r -a -a jupyterlab_autoversion/
+	cd js; ${YARN} fix
 
 annotate: ## MyPy type annotation check
-	mypy -s jupyterlab_autoversion
+	${PYTHON} -m mypy jupyterlab_autoversion
 
 annotate_l: ## MyPy type annotation check - count only
-	mypy -s jupyterlab_autoversion | wc -l
+	${PYTHON} -m mypy jupyterlab_autoversion | wc -l
 
 clean: ## clean the repository
 	find . -name "__pycache__" | xargs  rm -rf
 	find . -name "*.pyc" | xargs rm -rf
 	find . -name ".ipynb_checkpoints" | xargs  rm -rf
-	rm -rf .coverage coverage cover htmlcov logs build dist *.egg-info lib node_modules
+	rm -rf .coverage coverage coverage.xml cover htmlcov python_junit.xml logs build dist lab-dist *.egg-info .mypy_cache .pytest_cache
+	cd js; rm -rf node_modules lib package-lock.json yarn.lock tsconfig.tsbuildinfo
 	# make -C ./docs clean
+
+dev_install: ## set up the repo for active development
+	${PYTHON} -m pip install -e .[dev] --install-option=--skip-npm
+	make labextension
+	# verify
+	${PYTHON} -m jupyter serverextension list
+	${PYTHON} -m jupyter labextension list
 
 docs:  ## make documentation
 	make -C ./docs html
 	open ./docs/_build/html/index.html
 
 install:  ## install to site-packages
-	pip3 install .
+	${PYTHON} -m pip install .
 
 serverextension: install ## enable serverextension
-	jupyter serverextension enable --py jupyterlab_autoversion
+	${PYTHON} -m jupyter serverextension enable --py jupyterlab_autoversion
 
 js:  ## build javascript
-	cd js; yarn
-	cd js; yarn build
+	cd js; ${YARN}
+	cd js; ${YARN} build
 
 labextension: js ## enable labextension
-	cd js; jupyter labextension install .
+	cd js; ${PYTHON} -m jupyter labextension install .
 
-dist: js  ## create dists
+dist: js ## create dists
 	rm -rf dist build
-	python3.7 setup.py sdist bdist_wheel
+	${PYTHON} setup.py sdist bdist_wheel
 
 publish: dist  ## dist to pypi and npm
-	twine check dist/* && twine upload dist/*
+	${PYTHON} -m twine check dist/* && twine upload dist/*
 	cd js; npm publish
+
+init_debug:  ## make launch.json from template for debugging in vscode
+	mkdir -p ./.vscode
+	cp ./docs/debug/.vscode/jupyterlab_venv.env.template ./.vscode/jupyterlab_venv.env
+	cp ./docs/debug/.vscode/launch.json.template ./.vscode/launch.json
 
 # Thanks to Francoise at marmelab.com for this
 .DEFAULT_GOAL := help
@@ -62,4 +78,4 @@ help:
 print-%:
 	@echo '$*=$($*)'
 
-.PHONY: clean install serverextension labextension test tests help docs dist
+.PHONY: clean install serverextension labextension test tests help docs dist js
