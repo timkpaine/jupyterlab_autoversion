@@ -22,21 +22,13 @@ pip install jupyterlab_autoversion
 jupyter lab build
 ```
 
-# Devlopment
 
-## Dev install
+## Development
 
-```bash
-# at the root of jupyterlab_autoversion repo
-make dev_install
-```
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
 
-## Debug Python and Typescript code using vscode
 
-vscode is able to debug both the Python and Typescript sections of this project, and can do so in a single run. However, vscode will first require a specific launch config before you can debug with it. You can create this launch config by first running
+## License
 
-```bash
-make init_debug
-```
-
-and then editing the resulting `.vscode/launch.json` and `.vscode/jupyterlab_venv.env` files as needed
+This software is licensed under the Apache 2.0 license. See the
+[LICENSE](LICENSE) file for details.
