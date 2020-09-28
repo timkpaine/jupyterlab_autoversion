@@ -34,6 +34,14 @@ If you want to help resolve an issue by making some changes that are larger than
   - `jupyter labextension install .` - This will add the lab extension in development
     mode.
   - `jupyter serverextension enable --py jupyterlab_autoversion` - This will enable the server extension.
+
+For convenience, you can use the scripts in our Makefile
+
+```bash
+# at the root of jupyterlab_autoversion repo
+make dev_install
+```
+
 - Validate the install by running the tests:
   - `py.test` - This command will run the Python tests.
   - `yarn test` - This command will run the JS tests.
@@ -45,6 +53,17 @@ Once you have such a development setup, you should:
 - If you add new code, preferably write one or more tests for checking that your code works as expected.
 - Commit your changes and publish the branch to your github repo.
 - Open a pull-request (PR) back to the main repo on Github.
+
+
+## Debug Python and Typescript code using vscode
+
+vscode is able to debug both the Python and Typescript sections of this project, and can do so in a single run. However, vscode will first require a specific launch config before you can debug with it. You can create this launch config by first running
+
+```bash
+make init_debug
+```
+
+and then editing the resulting `.vscode/launch.json` and `.vscode/jupyterlab_venv.env` files as needed
 
 # Releasing
 
