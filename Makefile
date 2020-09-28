@@ -1,6 +1,5 @@
-PIP := pip
 PYTHON := python
-YARN := jlpm
+YARN := yarn
 
 testjs: ## Clean and Make js tests
 	cd js; ${YARN} test
@@ -30,12 +29,12 @@ clean: ## clean the repository
 	find . -name "__pycache__" | xargs  rm -rf
 	find . -name "*.pyc" | xargs rm -rf
 	find . -name ".ipynb_checkpoints" | xargs  rm -rf
-	rm -rf .coverage coverage coverage.xml cover htmlcov python_junit.xml logs build dist lab-dist *.egg-info
+	rm -rf .coverage coverage coverage.xml cover htmlcov python_junit.xml logs build dist lab-dist *.egg-info .mypy_cache .pytest_cache
 	cd js; rm -rf node_modules lib package-lock.json yarn.lock tsconfig.tsbuildinfo
 	# make -C ./docs clean
 
 dev_install: ## set up the repo for active development
-	${PIP} install -e .[dev] --install-option=--skip-npm
+	${PYTHON} -m pip install -e .[dev] --install-option=--skip-npm
 	make labextension
 	# verify
 	${PYTHON} -m jupyter serverextension list
@@ -46,19 +45,19 @@ docs:  ## make documentation
 	open ./docs/_build/html/index.html
 
 install:  ## install to site-packages
-	${PIP} install .
+	${PYTHON} -m pip install .
 
 serverextension: install ## enable serverextension
 	${PYTHON} -m jupyter serverextension enable --py jupyterlab_autoversion
 
-jslib:  ## build javascript; this task cannot have the same name as the js dir
+js:  ## build javascript
 	cd js; ${YARN}
 	cd js; ${YARN} build
 
-labextension: jslib ## enable labextension
+labextension: js ## enable labextension
 	cd js; ${PYTHON} -m jupyter labextension install .
 
-dist: jslib  ## create dists
+dist: js ## create dists
 	rm -rf dist build
 	${PYTHON} setup.py sdist bdist_wheel
 
@@ -67,8 +66,9 @@ publish: dist  ## dist to pypi and npm
 	cd js; npm publish
 
 init_debug:  ## make launch.json from template for debugging in vscode
-	cp .vscode/jupyterlab_venv.env.template .vscode/jupyterlab_venv.env
-	cp .vscode/launch.json.template .vscode/launch.json
+	mkdir -p ./.vscode
+	cp ./docs/debug/.vscode/jupyterlab_venv.env.template ./.vscode/jupyterlab_venv.env
+	cp ./docs/debug/.vscode/launch.json.template ./.vscode/launch.json
 
 # Thanks to Francoise at marmelab.com for this
 .DEFAULT_GOAL := help
@@ -78,4 +78,4 @@ help:
 print-%:
 	@echo '$*=$($*)'
 
-.PHONY: clean install serverextension labextension test tests help docs dist
+.PHONY: clean install serverextension labextension test tests help docs dist js

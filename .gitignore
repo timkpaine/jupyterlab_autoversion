@@ -180,5 +180,4 @@ python_junit.xml
 # vscode ide stuff
 *.code-workspace
 .history
-.vscode/*
-!.vscode/*.template
+.vscode/

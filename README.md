@@ -36,7 +36,7 @@ make dev_install
 vscode is able to debug both the Python and Typescript sections of this project, and can do so in a single run. However, vscode will first require a specific launch config before you can debug with it. You can create this launch config by first running
 
 ```bash
-make debug_init
+make init_debug
 ```
 
 and then editing the resulting `.vscode/launch.json` and `.vscode/jupyterlab_venv.env` files as needed
