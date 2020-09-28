@@ -21,3 +21,14 @@ Enhanced checkpoints, versioned and persistent between restarts on every save
 pip install jupyterlab_autoversion
 jupyter lab build
 ```
+
+
+## Development
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
+
+
+## License
+
+This software is licensed under the Apache 2.0 license. See the
+[LICENSE](LICENSE) file for details.
