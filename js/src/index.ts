@@ -1,10 +1,6 @@
 /* eslint-disable max-classes-per-file */
 import {
-  IDisposable,
-} from "@lumino/disposable";
-
-import {
-  Dialog, ICommandPalette, showDialog, ToolbarButton,
+  Dialog, showDialog, CommandToolbarButton,
 } from "@jupyterlab/apputils";
 
 import {
@@ -16,28 +12,25 @@ import {
 } from "@jupyterlab/coreutils";
 
 import {
-  INotebookModel, NotebookPanel,
+  INotebookModel, NotebookPanel, INotebookTracker,
 } from "@jupyterlab/notebook";
 
 import {
-  ILayoutRestorer, JupyterFrontEnd, JupyterFrontEndPlugin,
+  JupyterFrontEnd, JupyterFrontEndPlugin,
 } from "@jupyterlab/application";
 
 import {
-  IDocumentManager,
-} from "@jupyterlab/docmanager";
+  find,
+} from "@lumino/algorithm";
 
 import {
-  IFileBrowserFactory,
-} from "@jupyterlab/filebrowser";
+  CommandRegistry,
+} from "@lumino/commands";
+
 
 import {
-  ILauncher,
-} from "@jupyterlab/launcher";
-
-import {
-  IMainMenu,
-} from "@jupyterlab/mainmenu";
+  IDisposable, DisposableDelegate,
+} from "@lumino/disposable";
 
 import {
   Widget,
@@ -49,12 +42,14 @@ import {
 
 import "../style/index.css";
 
+export
+const AUTOVERSION_COMMAND = "notebook:autoversion";
+
 const extension: JupyterFrontEndPlugin<void> = {
   activate,
   autoStart: true,
   id: "jupyterlab_autoversion",
-  optional: [ILauncher],
-  requires: [IDocumentManager, ICommandPalette, ILayoutRestorer, IMainMenu, IFileBrowserFactory],
+  requires: [INotebookTracker],
 };
 
 export
@@ -146,41 +141,77 @@ function revision(app: JupyterFrontEnd,
   });
 }
 
+
 export
 class AutoversionExtension implements DocumentRegistry.IWidgetExtension<NotebookPanel, INotebookModel> {
 
-  public readonly app: JupyterFrontEnd;
+  protected commands: CommandRegistry;
 
-  public constructor(app: JupyterFrontEnd) {
-    this.app = app;
+  public constructor(commands: CommandRegistry) {
+
+    this.commands = commands;
   }
 
-  public createNew(panel: NotebookPanel, context: DocumentRegistry.IContext<INotebookModel>): IDisposable {
-    // Create the toolbar button
-    const button = new ToolbarButton({
-      className: "autoversionButton",
-      // iconClassName: "fa fa-fast-backward",
-      // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-      onClick: () => autoversion(this.app, context),
-      tooltip: "Autoversion",
-    });
+  /**
+   * Create a new extension object.
+   */
+  public createNew(nb: NotebookPanel): IDisposable {
+    // Create extension here
 
-    // Add the toolbar button to the notebook
-    panel.toolbar.insertItem(7, "autoversion", button);
-    return button;
+    // Add buttons to toolbar
+    const buttons: CommandToolbarButton[] = [];
+    let insertionPoint = -1;
+    find(nb.toolbar.children(), (tbb, index) => {
+      if (tbb.hasClass("jp-Notebook-toolbarCellType")) {
+        insertionPoint = index;
+        return true;
+      }
+      return false;
+    });
+    let i = 1;
+    for (const id of [AUTOVERSION_COMMAND]) {
+      const button = new CommandToolbarButton({
+        commands: this.commands,
+        id,
+      });
+      button.addClass("autoversionButton");
+      if (insertionPoint >= 0) {
+        nb.toolbar.insertItem(insertionPoint + i++, this.commands.label(id), button);
+      } else {
+        nb.toolbar.addItem(this.commands.label(id), button);
+      }
+      buttons.push(button);
+    }
+
+
+    return new DisposableDelegate(() => {
+      // Cleanup extension here
+      for (const btn of buttons) {
+        btn.dispose();
+      }
+    });
   }
 }
 
-function activate(app: JupyterFrontEnd): void {
 
-  const avExtension = new AutoversionExtension(app);
-
+function activate(app: JupyterFrontEnd, tracker: INotebookTracker): void {
+  const {commands} = app;
+  const avExtension = new AutoversionExtension(commands);
   app.docRegistry.addWidgetExtension("Notebook", avExtension);
 
-  app.contextMenu.addItem({
-    command: "notebook:autoversion",
-    rank: -0.5,
-    selector: ".jp-Notebook",
+  commands.addCommand(AUTOVERSION_COMMAND, {
+    caption: "Restore previous version notebooks",
+    execute: () => {
+      const current = tracker.currentWidget;
+      if (!current) {
+        return;
+      }
+      autoversion(app, current.context);
+    },
+    iconClass: "jp-Icon jp-Icon-16 fa fa-fast-backward",
+    iconLabel: "autoversion",
+    isEnabled: () => tracker.currentWidget !== undefined && tracker.currentWidget !== null,
+    label: "",
   });
 
   // eslint-disable-next-line no-console
