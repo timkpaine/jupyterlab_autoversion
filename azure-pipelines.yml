@@ -1,7 +1,7 @@
 trigger:
   branches:
     include:
-      - master
+      - main 
   tags:
     include:
       # todo: should we just include all tags? (see conditional package upload step)
