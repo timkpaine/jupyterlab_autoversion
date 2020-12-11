@@ -6,14 +6,15 @@ include setup.cfg
 include pyproject.toml
 include .bumpversion.cfg
 
-graft js
-prune docs
-prune js/lib
-prune js/build
-prune js/dist
-prune js/yarn.lock
-prune js/node_modules
 
+# Webapp files
+graft js
+prune js/dist
+prune js/build
+prune js/lib
+prune js/node_modules
+prune js/yarn.lock
+prune docs/
 
 # Patterns to exclude from any directory
 global-exclude *~

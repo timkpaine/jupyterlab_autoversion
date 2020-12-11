@@ -116,7 +116,7 @@ function autoversion(app: JupyterFrontEnd, context: DocumentRegistry.IContext<IN
     } else {
       // narrow typing of .value since body.getValue != null
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      const val = result.value!.split(",");
+      const val = result.value.split(",");
 
       revision(app, context, val[2], val[3]);
     }
