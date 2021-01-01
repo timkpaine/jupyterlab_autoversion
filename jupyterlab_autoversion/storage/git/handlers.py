@@ -13,11 +13,11 @@ class GitGetHandler(IPythonHandler):
 
     @tornado.web.authenticated
     def get(self):
-        path = self.get_argument('path', '')
-        id = self.get_argument('id', '')
+        path = self.get_argument("path", "")
+        id = self.get_argument("id", "")
 
         if not id and not path:
-            self.finish({'id': '', 'last': ''})
+            self.finish({"id": "", "last": ""})
             return
 
         if not id and path:
@@ -25,8 +25,16 @@ class GitGetHandler(IPythonHandler):
             sha.update(path.encode())
             id = sha.hexdigest()
 
-        last = list(reversed([[x.commit.hexsha, x.commit.authored_date * 1000] + x.name.split('-') for x in self.repo.tags if id in x.name]))
-        self.finish({'id': id, 'versions': last})
+        last = list(
+            reversed(
+                [
+                    [x.commit.hexsha, x.commit.authored_date * 1000] + x.name.split("-")
+                    for x in self.repo.tags
+                    if id in x.name
+                ]
+            )
+        )
+        self.finish({"id": id, "versions": last})
         return
 
 
@@ -36,12 +44,12 @@ class GitRestoreHandler(IPythonHandler):
 
     @tornado.web.authenticated
     def get(self):
-        path = self.get_argument('path', '')
-        id = self.get_argument('id', '')
-        version = int(self.get_argument('version', 0))
+        path = self.get_argument("path", "")
+        id = self.get_argument("id", "")
+        version = int(self.get_argument("version", 0))
 
         if not id and not path:
-            self.finish({'id': '', 'version': -1, 'contents': {}})
+            self.finish({"id": "", "version": -1, "contents": {}})
             return
 
         if not id and path:
@@ -50,9 +58,9 @@ class GitRestoreHandler(IPythonHandler):
             id = sha.hexdigest()
 
         try:
-            tag = self.repo.tags['%s-%d' % (id, version)]
+            tag = self.repo.tags["%s-%d" % (id, version)]
         except IndexError:
-            self.finish({'id': '', 'version': -1, 'contents': {}})
+            self.finish({"id": "", "version": -1, "contents": {}})
             return
 
         past = self.repo.tags[-1]
@@ -61,7 +69,7 @@ class GitRestoreHandler(IPythonHandler):
         git.checkout(tag)
 
         path = os.path.join(self.repo.working_tree_dir, id)
-        nb = os.path.join(path, 'NOTEBOOK')
+        nb = os.path.join(path, "NOTEBOOK")
 
         if os.path.exists(path):
             if os.path.exists(nb):
@@ -71,6 +79,6 @@ class GitRestoreHandler(IPythonHandler):
         else:
             nb = {}
 
-        self.finish({'id': id, 'version': version, 'nb': nb})
+        self.finish({"id": id, "version": version, "nb": nb})
 
         git.checkout(past)

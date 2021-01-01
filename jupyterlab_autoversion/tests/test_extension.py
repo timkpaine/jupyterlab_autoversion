@@ -26,6 +26,6 @@ class TestExtension:
         m = MagicMock()
 
         m.web_app.settings = {}
-        m.web_app.settings['base_url'] = '/test'
+        m.web_app.settings["base_url"] = "/test"
         m.config = {"JupyterLabAutoversion": {"backend": "git"}}
         load_jupyter_server_extension(m)
