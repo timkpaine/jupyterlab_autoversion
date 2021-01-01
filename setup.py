@@ -15,20 +15,24 @@ jshere = path.abspath(path.join(path.dirname(__file__), 'js'))
 version = get_version(pjoin(here, name, '_version.py'))
 
 with open(path.join(here, 'README.md'), encoding='utf-8') as f:
-    long_description = f.read()
+    long_description = f.read().replace("\r\n", "\n")
 
 requires = [
     'GitPython>=2.1.11',
     'jupyterlab>=2.0.0',
 ]
 
-dev_requires = requires + [
-    'bump2version',
-    'flake8',
-    'autopep8',
-    'pytest',
-    'pytest-cov>=2.6.1',
-    'mock'
+requires_dev = requires + [
+    "black>=20.",
+    "bump2version>=1.0.0",
+    "flake8>=3.7.8",
+    "flake8-black>=0.2.1",
+    "jupyter_packaging",
+    "mock",
+    "pytest>=4.3.0",
+    "pytest-cov>=2.6.1",
+    "Sphinx>=1.8.4",
+    "sphinx-markdown-builder>=0.5.2",
 ]
 
 data_spec = [

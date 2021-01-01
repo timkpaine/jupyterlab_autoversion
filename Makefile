@@ -15,8 +15,8 @@ lint: ## run linter
 	${PYTHON} -m flake8 jupyterlab_autoversion setup.py
 	cd js; ${YARN} lint
 
-fix:  ## run autopep8/tslint fix
-	${PYTHON} -m autopep8 --in-place -r -a -a jupyterlab_autoversion/
+fix:  ## run black/tslint fix
+	${PYTHON} -m black jupyterlab_autoversion/ setup.py
 	cd js; ${YARN} fix
 
 annotate: ## MyPy type annotation check
@@ -60,9 +60,10 @@ labextension: js ## enable labextension
 dist: js ## create dists
 	rm -rf dist build
 	${PYTHON} setup.py sdist bdist_wheel
+	${PYTHON} -m twine check dist/*
 
 publish: dist  ## dist to pypi and npm
-	${PYTHON} -m twine check dist/* && twine upload dist/*
+	${PYTHON} -m twine upload dist/*
 	cd js; npm publish
 
 init_debug:  ## make launch.json from template for debugging in vscode
