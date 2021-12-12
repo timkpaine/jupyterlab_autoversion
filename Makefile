@@ -19,12 +19,6 @@ fix:  ## run black/tslint fix
 	${PYTHON} -m black jupyterlab_autoversion/ setup.py
 	cd js; ${YARN} fix
 
-annotate: ## MyPy type annotation check
-	${PYTHON} -m mypy jupyterlab_autoversion
-
-annotate_l: ## MyPy type annotation check - count only
-	${PYTHON} -m mypy jupyterlab_autoversion | wc -l
-
 clean: ## clean the repository
 	find . -name "__pycache__" | xargs  rm -rf
 	find . -name "*.pyc" | xargs rm -rf
