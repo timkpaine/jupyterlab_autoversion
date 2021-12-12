@@ -31,16 +31,9 @@ If you want to help resolve an issue by making some changes that are larger than
 - Run the following commands inside the cloned repository:
   - `pip install -e .[dev]` - This will install the Python package in development
     mode.
-  - `jupyter labextension install .` - This will add the lab extension in development
+  - `jupyter labextension install js` - This will add the lab extension in development
     mode.
   - `jupyter serverextension enable --py jupyterlab_autoversion` - This will enable the server extension.
-
-For convenience, you can use the scripts in our Makefile
-
-```bash
-# at the root of jupyterlab_autoversion repo
-make dev_install
-```
 
 - Validate the install by running the tests:
   - `py.test` - This command will run the Python tests.
