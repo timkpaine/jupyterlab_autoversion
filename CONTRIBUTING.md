@@ -64,16 +64,3 @@ make init_debug
 ```
 
 and then editing the resulting `.vscode/launch.json` and `.vscode/jupyterlab_venv.env` files as needed
-
-# Releasing
-
-To make a new release of jupyterlab_autoversion:
-
-1. `bumpversion patch` (replacing `patch` with whatever is appropriate for the current release, e.g. `minor`, `major`, etc) - This will also create a git commit and tag.
-2. `git push --follow-tags` - This will trigger python and npm package builds on azure, and upload to [our azure feed](https://dev.azure.com/tpaine154/jupyter/_packaging?_a=feed&feed=python-packages).
-3. Check the resulting packages:
-  - Install and test in a clean environment:
-    - You can install for python with `pip install --index-url=https://pkgs.dev.azure.com/tpaine154/jupyter/_packaging/python-packages/pypi/simple/ jupyterlab_autoversion==<version> --extra-index-url=https://pypi.org/simple`, modifying as appropriate to use the wheel or the sdist, and to install the version you want to test.
-    - Download the jupyterlab_autoversion npm package from [our azure feed](https://dev.azure.com/tpaine154/jupyter/_packaging?_a=feed&feed=python-packages) and then install with `jupyter labextension install /path/to/jupyterlab_autoversion-<version>.tgz` (replacing the filename with whatever you downloaded).
-  - Inspect the sdist, wheel, and npm tgz to make sure they contain the right files, version numbers, etc.
-4. Once satisfied, use `bumpversion` either to set or increment `release` to `final` (e.g.  `bumpversion release`), and then grab the resulting releases from azure and upload to pypi and npm.
