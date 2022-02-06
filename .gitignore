@@ -180,3 +180,6 @@ python_junit.xml
 *.code-workspace
 .history
 .vscode/
+jupyterlab_autoversion/labextension
+js/static
+Untitled*.ipynb
