@@ -1,6 +1,6 @@
 {
   "name": "jupyterlab_autoversion",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Automatically version jupyter notebooks on save",
   "author": "Tim Paine",
   "license": "Apache-2.0",
