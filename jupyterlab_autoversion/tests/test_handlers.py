@@ -3,7 +3,7 @@ import os
 import os.path
 import tornado.web
 from git import Repo
-from mock import MagicMock
+from unittest.mock import MagicMock
 from jupyterlab_autoversion.storage.git.handlers import GitGetHandler, GitRestoreHandler
 from tempfile import TemporaryDirectory
 
