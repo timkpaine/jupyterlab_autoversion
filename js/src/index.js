@@ -1,95 +1,13 @@
 /* eslint-disable max-classes-per-file */
-import {Dialog, showDialog, CommandToolbarButton} from "@jupyterlab/apputils";
-
-import {PageConfig} from "@jupyterlab/coreutils";
-
+import {ToolbarButton} from "@jupyterlab/apputils";
 import {INotebookTracker} from "@jupyterlab/notebook";
-
-import {find} from "@lumino/algorithm";
-
 import {DisposableDelegate} from "@lumino/disposable";
 
-import {Widget} from "@lumino/widgets";
-
-import {request} from "requests-helper";
+import {autoversion} from "./widget";
+import {AUTOVERSION_CAPTION, AUTOVERSION_LABEL, AUTOVERSION_COMMAND} from "./common";
+import {autoversionIcon} from "./icon";
 
 import "../style/index.css";
-
-export const AUTOVERSION_COMMAND = "notebook:autoversion";
-
-export class AutoversionWidget extends Widget {
-  constructor(app, context, id, path) {
-    const body = document.createElement("div");
-    body.style.display = "flex";
-    body.style.flexDirection = "column";
-
-    const default_none = document.createElement("option");
-    default_none.selected = false;
-    default_none.disabled = true;
-    default_none.hidden = false;
-    default_none.style.display = "none";
-    default_none.value = "";
-
-    const type = document.createElement("select");
-    type.appendChild(default_none);
-
-    request("get", `${PageConfig.getBaseUrl()}autoversion/get?id=${id}&path=${path}`).then((res) => {
-      if (res.ok) {
-        const versions = res.json();
-        versions.versions.forEach((record) => {
-          const option = document.createElement("option");
-          option.value = record;
-          const timestamp = new Date(record[1]);
-
-          option.textContent = `${timestamp} -- ${record[0].slice(0, 6)}`;
-          type.appendChild(option);
-        });
-      }
-    });
-    type.style.marginBottom = "15px";
-    type.style.minHeight = "25px";
-    body.appendChild(type);
-
-    super({node: body});
-  }
-
-  getValue() {
-    return this.inputNode.value;
-  }
-
-  get inputNode() {
-    return this.node.getElementsByTagName("select")[0];
-  }
-}
-
-export function revision(app, context, id, version) {
-  request("get", `${PageConfig.getBaseUrl()}autoversion/restore?id=${id}&path=${context.path}&version=${version}`).then((res) => {
-    if (res.ok) {
-      const data = res.json();
-      if (data.version.toString() === version) {
-        context.model.fromJSON(data.nb);
-      }
-    }
-  });
-}
-
-export function autoversion(app, context) {
-  const {model} = context;
-  const id = model.metadata.autoversion || "";
-
-  showDialog({
-    body: new AutoversionWidget(app, context, id, context.path),
-    buttons: [Dialog.cancelButton(), Dialog.okButton({label: "Ok"})],
-    focusNodeSelector: "input",
-    title: "Autoversion:",
-  }).then((result) => {
-    if (result.button.label !== "Cancel") {
-      // narrow typing of .value since body.getValue != null
-      const val = result.value.split(",");
-      revision(app, context, val[2], val[3]);
-    }
-  });
-}
 
 export class AutoversionExtension {
   commands;
@@ -101,49 +19,30 @@ export class AutoversionExtension {
   /**
    * Create a new extension object.
    */
-  createNew(nb) {
-    // Create extension here
-
-    // Add buttons to toolbar
-    const buttons = [];
-    let insertionPoint = -1;
-    find(nb.toolbar.children(), (tbb, index) => {
-      if (tbb.hasClass("jp-Notebook-toolbarCellType")) {
-        insertionPoint = index;
-        return true;
-      }
-      return false;
+  createNew(panel) {
+    const button = new ToolbarButton({
+      className: "autoversionButton",
+      tooltip: AUTOVERSION_CAPTION,
+      icon: autoversionIcon,
+      onClick: () => {
+        this.commands.execute(AUTOVERSION_COMMAND);
+      },
     });
-    let i = 1;
 
-    const button = new CommandToolbarButton({
-      commands: this.commands,
-      AUTOVERSION_COMMAND,
-    });
-    button.addClass("autoversionButton");
-    if (insertionPoint >= 0) {
-      nb.toolbar.insertItem(insertionPoint + i++, this.commands.label(AUTOVERSION_COMMAND), button);
-    } else {
-      nb.toolbar.addItem(this.commands.label(AUTOVERSION_COMMAND), button);
-    }
-    buttons.push(button);
+    panel.toolbar.insertAfter("restart-and-run", AUTOVERSION_LABEL, button);
 
     return new DisposableDelegate(() => {
-      // Cleanup extension here
-      buttons.forEach((btn) => {
-        btn.dispose();
-      });
+      button.dispose();
     });
   }
 }
 
 function activate(app, tracker) {
   const {commands} = app;
-  const avExtension = new AutoversionExtension(commands);
-  app.docRegistry.addWidgetExtension("Notebook", avExtension);
+  app.docRegistry.addWidgetExtension("Notebook", new AutoversionExtension(commands));
 
   commands.addCommand(AUTOVERSION_COMMAND, {
-    caption: "Restore previous version notebooks",
+    caption: AUTOVERSION_CAPTION,
     execute: () => {
       const current = tracker.currentWidget;
       if (!current) {
@@ -151,10 +50,9 @@ function activate(app, tracker) {
       }
       autoversion(app, current.context);
     },
-    iconClass: "jp-Icon jp-Icon-16 fa fa-fast-backward",
-    iconLabel: "autoversion",
-    isEnabled: () => tracker.currentWidget !== undefined && tracker.currentWidget !== null,
-    label: "",
+    icon: autoversionIcon,
+    isEnabled: () => tracker && tracker.currentWidget !== undefined && tracker.currentWidget !== null,
+    label: AUTOVERSION_CAPTION,
   });
 
   // eslint-disable-next-line no-console

@@ -32,11 +32,6 @@ def initialize(nb_server_app):
         with open(ignore_root, "w") as fp:
             fp.write("\n.autoversion\n")
 
-    print(
-        "Installing jupyterlab_autoversion handler on path %s"
-        % url_path_join(base_url, "autoversion")
-    )
-
     context = {"repo": repo}
     handlers = [
         (url_path_join(base_url, "autoversion/get"), GitGetHandler, context),

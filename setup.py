@@ -48,7 +48,7 @@ jstargets = [
 data_spec = [
     (
         "share/jupyter/labextensions/jupyterlab_autoversion",
-        "jupyterlab_autoversion/labextension",
+        lab_path,
         "**",
     ),
     ("etc/jupyter/jupyter_server_config.d", ext_path, "*.json"),
@@ -62,7 +62,7 @@ builder = npm_builder(build_cmd="build:all", path=jshere)
 
 setup(
     name=name,
-    version="0.3.2",
+    version="0.3.3",
     description="Automatically version jupyter notebooks on save",
     long_description=long_description,
     long_description_content_type="text/markdown",
