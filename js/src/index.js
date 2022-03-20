@@ -116,6 +116,9 @@ export class AutoversionExtension {
     });
     let i = 1;
 
+    console.log("HERE2");
+    console.log(this.commands);
+
     const button = new CommandToolbarButton({
       commands: this.commands,
       AUTOVERSION_COMMAND,
@@ -141,6 +144,10 @@ function activate(app, tracker) {
   const {commands} = app;
   const avExtension = new AutoversionExtension(commands);
   app.docRegistry.addWidgetExtension("Notebook", avExtension);
+
+  console.log("HERERERE");
+  console.log(app);
+  console.log(tracker);
 
   commands.addCommand(AUTOVERSION_COMMAND, {
     caption: "Restore previous version notebooks",
