@@ -92,7 +92,7 @@ setup(
         ]
     ),
     install_requires=requires,
-    test_suite="juypyterlab_autoversion.tests",
+    test_suite="jupyterlab_autoversion.tests",
     tests_require=requires_test,
     extras_require={
         "dev": requires_dev,
