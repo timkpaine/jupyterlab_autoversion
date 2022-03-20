@@ -183,3 +183,5 @@ python_junit.xml
 jupyterlab_autoversion/labextension
 js/static
 Untitled*.ipynb
+
+.autoversion

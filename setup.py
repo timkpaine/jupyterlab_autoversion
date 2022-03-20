@@ -48,7 +48,7 @@ jstargets = [
 data_spec = [
     (
         "share/jupyter/labextensions/jupyterlab_autoversion",
-        "jupyterlab_autoversion/labextension",
+        lab_path,
         "**",
     ),
     ("etc/jupyter/jupyter_server_config.d", ext_path, "*.json"),
