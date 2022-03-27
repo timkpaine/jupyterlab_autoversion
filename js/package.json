@@ -11,10 +11,10 @@
     "jupyterlab-extension"
   ],
   "scripts": {
-    "build": "babel src/ --source-maps --out-dir lib/",
-    "build:lab": "rimraf ../jupyterlab_autoversion/labextension && jupyter labextension build .",
-    "build:all": "npm run build && npm run build:lab",
-    "clean": "rimraf lib",
+    "build:babel": "babel src/ --source-maps --out-dir lib/",
+    "build:lab": "jupyter labextension build .",
+    "build": "npm-run-all build:*",
+    "clean": "rimraf lib ../jupyterlab_autoversion/labextension",
     "fix": "yarn lint --fix",
     "lint": "eslint -c .eslintrc.js --ext .js src/ tests/",
     "prepublishOnly": "npm run build",
@@ -69,6 +69,7 @@
     "jest": "^27.0.5",
     "jest-transform-css": "^3.0.0",
     "mkdirp": "^1.0.4",
+    "npm-run-all": "^4.1.5",
     "rimraf": "^3.0.2"
   }
 }

@@ -1,7 +1,7 @@
 from codecs import open
 from os import path
 
-from jupyter_packaging import wrap_installers, npm_builder, get_data_files
+from jupyter_packaging import get_data_files, npm_builder, wrap_installers
 from setuptools import find_packages, setup
 
 pjoin = path.join
@@ -37,8 +37,8 @@ requires_dev = (
     ]
 )
 
-ext_path = pjoin(here, name, "extension")
-lab_path = pjoin(here, name, "labextension")
+ext_path = pjoin(name, "extension")
+lab_path = pjoin(name, "labextension")
 
 # Representative files that should exist after a successful build
 jstargets = [
@@ -55,10 +55,10 @@ data_spec = [
 ]
 
 ensured_targets = [
-    pjoin(here, "jupyterlab_autoversion", "labextension", "package.json"),
+    pjoin("jupyterlab_autoversion", "labextension", "package.json"),
 ]
 
-builder = npm_builder(build_cmd="build:all", path=jshere)
+builder = npm_builder(build_cmd="build", path=jshere)
 
 setup(
     name=name,
