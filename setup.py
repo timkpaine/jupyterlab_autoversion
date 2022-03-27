@@ -58,7 +58,7 @@ ensured_targets = [
     pjoin(here, "jupyterlab_autoversion", "labextension", "package.json"),
 ]
 
-builder = npm_builder(build_cmd="build:all", path=jshere)
+builder = npm_builder(build_cmd="build", path=jshere)
 
 setup(
     name=name,
