@@ -22,7 +22,7 @@
   },
   "files": [
     "lib/**/*.{d.ts,eot,gif,html,jpg,js,js.map,json,png,svg,woff2,ttf}",
-    "style/**/*.css"
+    "style/**/*.{css,svg}"
   ],
   "jupyterlab": {
     "extension": "lib/index.js",
