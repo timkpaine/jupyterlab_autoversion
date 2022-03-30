@@ -18,7 +18,6 @@ Enhanced checkpoints, versioned and persistent between restarts on every save
 
 ```bash
 pip install jupyterlab_autoversion
-jupyter lab build
 ```
 
 
