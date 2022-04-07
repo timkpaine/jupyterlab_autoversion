@@ -29,7 +29,7 @@ checks:  ## run lint and other checks
 	check-manifest
 
 build: clean  ## build python/javascript
-	python -m build .
+	python -m build . -n -w -s
 
 develop:  ## install to site-packages in editable mode
 	python -m pip install --upgrade build pip setuptools twine wheel
@@ -60,6 +60,7 @@ clean: ## clean the repository
 	find . -name ".ipynb_checkpoints" | xargs  rm -rf
 	rm -rf .coverage coverage *.xml build dist *.egg-info lib node_modules .pytest_cache *.egg-info
 	rm -rf jupyterlab_autoversion/labextension
+	cd js && yarn clean
 	# make -C ./docs clean
 	git clean -fd
 

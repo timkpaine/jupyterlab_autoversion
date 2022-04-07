@@ -62,7 +62,7 @@ builder = npm_builder(build_cmd="build", path=jshere)
 
 setup(
     name=name,
-    version="0.3.4",
+    version="0.3.5",
     description="Automatically version jupyter notebooks on save",
     long_description=long_description,
     long_description_content_type="text/markdown",
