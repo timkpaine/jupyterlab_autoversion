@@ -1,6 +1,6 @@
 {
   "name": "jupyterlab_autoversion",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "description": "Automatically version jupyter notebooks on save",
   "author": "Tim Paine",
   "license": "Apache-2.0",
@@ -13,7 +13,7 @@
   "scripts": {
     "build:babel": "babel src/ --source-maps --out-dir lib/",
     "build:lab": "jupyter labextension build .",
-    "build": "npm-run-all build:*",
+    "build": "npm-run-all clean build:*",
     "clean": "rimraf lib ../jupyterlab_autoversion/labextension",
     "fix": "yarn lint --fix",
     "lint": "eslint -c .eslintrc.js --ext .js src/ tests/",
