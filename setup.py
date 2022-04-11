@@ -65,7 +65,7 @@ builder = npm_builder(
 
 setup(
     name=name,
-    version="0.3.5",
+    version="0.3.6",
     description="Automatically version jupyter notebooks on save",
     long_description=long_description,
     long_description_content_type="text/markdown",
