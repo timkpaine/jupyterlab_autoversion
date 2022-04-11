@@ -28,7 +28,7 @@ check: checks
 checks:  ## run lint and other checks
 	check-manifest -v
 
-build: clean  ## build python/javascript
+build:  ## build python/javascript
 	python -m build .
 
 develop:  ## install to site-packages in editable mode
