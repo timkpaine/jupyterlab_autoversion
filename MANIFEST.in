@@ -7,8 +7,10 @@ include setup.cfg
 include pyproject.toml
 include Makefile
 
-include jupyterlab_autoversion/extension/jupyterlab_autoversion.json
-recursive-include jupyterlab_autoversion/labextension *.*
+graft jupyterlab_autoversion
+graft jupyterlab_autoversion/extension
+graft jupyterlab_autoversion/labextension
+graft jupyterlab_autoversion/nbextension
 
 # grab js
 graft js
