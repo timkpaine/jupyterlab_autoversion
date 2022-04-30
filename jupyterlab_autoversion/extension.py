@@ -36,15 +36,4 @@ def load_jupyter_server_extension(nb_server_app):
     )
 
     web_app.add_handlers(host_pattern, handlers)
-
-    if callable(nb_server_app.contents_manager.pre_save_hook):
-        # grab existing hook, and add on top
-        temp_hook = nb_server_app.contents_manager.pre_save_hook
-
-        def _hook(*args, **kwargs):
-            temp_hook(*args, **kwargs)
-            hook(*args, **kwargs)
-
-        nb_server_app.contents_manager.pre_save_hook = _hook
-    else:
-        nb_server_app.contents_manager.pre_save_hook = hook
+    nb_server_app.contents_manager.register_pre_save_hook(hook)
