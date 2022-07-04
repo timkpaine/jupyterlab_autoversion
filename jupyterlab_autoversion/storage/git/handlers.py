@@ -4,10 +4,10 @@ import os.path
 import nbformat
 import tornado.web
 from git import Git
-from notebook.base.handlers import IPythonHandler
+from jupyter_server.base.handlers import JupyterHandler
 
 
-class GitGetHandler(IPythonHandler):
+class GitGetHandler(JupyterHandler):
     def initialize(self, repo):
         self.repo = repo
 
@@ -38,7 +38,7 @@ class GitGetHandler(IPythonHandler):
         return
 
 
-class GitRestoreHandler(IPythonHandler):
+class GitRestoreHandler(JupyterHandler):
     def initialize(self, repo):
         self.repo = repo
 

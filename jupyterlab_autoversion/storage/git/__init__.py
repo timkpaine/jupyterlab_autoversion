@@ -2,7 +2,7 @@ import os
 import os.path
 from git import Repo
 from functools import partial
-from notebook.utils import url_path_join
+from jupyter_server.utils import url_path_join
 
 from .handlers import GitGetHandler, GitRestoreHandler
 from .hook import post_save_autocommit_git

@@ -1,4 +1,4 @@
-from notebook.utils import url_path_join
+from jupyter_server.utils import url_path_join
 
 
 def load_jupyter_server_extension(nb_server_app):
