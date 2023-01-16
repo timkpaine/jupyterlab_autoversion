@@ -28,6 +28,7 @@ class TestExtension:
 
             h = GitGetHandler(app, m, repo=repo)
             h._transforms = []
+            h.current_user = h._jupyter_current_user = "blerg"
             h.get_argument = get_argument
             h.get()
 
@@ -38,6 +39,7 @@ class TestExtension:
                     return "test"
 
             h = GitGetHandler(app, m, repo=repo)
+            h.current_user = h._jupyter_current_user = "blerg"
             h._transforms = []
             h.get_argument = get_argument
             h.get()
@@ -49,6 +51,7 @@ class TestExtension:
                     return "test"
 
             h = GitGetHandler(app, m, repo=repo)
+            h.current_user = h._jupyter_current_user = "blerg"
             h._transforms = []
             h.get_argument = get_argument
             h.get()
@@ -73,6 +76,7 @@ class TestExtension:
                     return 0
 
             h = GitRestoreHandler(app, m, repo=repo)
+            h.current_user = h._jupyter_current_user = "blerg"
             h._transforms = []
             h.get_argument = get_argument
             h.get()
@@ -86,6 +90,7 @@ class TestExtension:
                     return 0
 
             h = GitRestoreHandler(app, m, repo=repo)
+            h.current_user = h._jupyter_current_user = "blerg"
             h._transforms = []
             h.get_argument = get_argument
             h.get()
@@ -99,6 +104,7 @@ class TestExtension:
                     return 0
 
             h = GitRestoreHandler(app, m, repo=repo)
+            h.current_user = h._jupyter_current_user = "blerg"
             h._transforms = []
             h.get_argument = get_argument
             h.get()
