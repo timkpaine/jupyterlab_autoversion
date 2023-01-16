@@ -22,7 +22,6 @@ class TestExtension:
         # teardown_class() after any methods in this class
 
     def test_load_jupyter_server_extension(self):
-
         m = MagicMock()
 
         m.web_app.settings = {}
