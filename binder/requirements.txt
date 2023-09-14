@@ -1,2 +1,2 @@
 jupyterlab_autoversion>=0.3.2
-jupyterlab>=3.2
+jupyterlab>=3.5,<4

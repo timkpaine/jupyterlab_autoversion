@@ -14,7 +14,7 @@ with open(path.join(here, "README.md"), encoding="utf-8") as f:
 
 requires = [
     "GitPython>=2.1.11",
-    "jupyterlab>=3.0.0",
+    "jupyterlab>=3.5,<4",
     "jupyter_server>=1.17.0",
 ]
 
