@@ -9,7 +9,7 @@ build-backend = "hatchling.build"
 [project]
 name = "jupyterlab_autoversion"
 description = "Automatically version jupyter notebooks on save"
-version = "0.1.0"
+version = "0.4.0"
 readme = "README.md"
 license = { file = "LICENSE" }
 requires-python = ">=3.7"
