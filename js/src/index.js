@@ -1,6 +1,7 @@
 /* eslint-disable max-classes-per-file */
 import {ToolbarButton} from "@jupyterlab/apputils";
 import {INotebookTracker} from "@jupyterlab/notebook";
+import {IRenderMimeRegistry} from "@jupyterlab/rendermime";
 import {DisposableDelegate} from "@lumino/disposable";
 
 import {autoversion} from "./widget";
@@ -37,18 +38,19 @@ export class AutoversionExtension {
   }
 }
 
-function activate(app, tracker) {
+function activate(app, tracker, rendermime) {
   const {commands} = app;
   app.docRegistry.addWidgetExtension("Notebook", new AutoversionExtension(commands));
 
   commands.addCommand(AUTOVERSION_COMMAND, {
     caption: AUTOVERSION_CAPTION,
-    execute: () => {
+    execute: async () => {
       const current = tracker.currentWidget;
       if (!current) {
         return;
       }
-      autoversion(app, current.context);
+      await app.commands.execute("docmanager:save");
+      autoversion(app, rendermime, current.context);
     },
     icon: autoversionIcon,
     isEnabled: () => tracker && tracker.currentWidget !== undefined && tracker.currentWidget !== null,
@@ -63,7 +65,7 @@ const extension = {
   activate,
   autoStart: true,
   id: "jupyterlab_autoversion",
-  requires: [INotebookTracker],
+  requires: [INotebookTracker, IRenderMimeRegistry],
 };
 
 export default extension;

@@ -6,6 +6,7 @@ from jupyter_server.utils import url_path_join
 
 from .handlers import GitGetHandler, GitRestoreHandler
 from .hook import post_save_autocommit_git
+from .diff import GitDiffHandler
 
 
 def initialize(nb_server_app):
@@ -36,6 +37,7 @@ def initialize(nb_server_app):
     handlers = [
         (url_path_join(base_url, "autoversion/get"), GitGetHandler, context),
         (url_path_join(base_url, "autoversion/restore"), GitRestoreHandler, context),
+        (url_path_join(base_url, "autoversion/diff"), GitDiffHandler, context),
     ]
 
     return partial(post_save_autocommit_git, repo=repo), handlers

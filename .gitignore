@@ -170,6 +170,7 @@ ENV/
 .autoversion
 docs/api
 docs/index.md
+junit.xml
 python_junit.xml
 
 # jetbrains ide stuff

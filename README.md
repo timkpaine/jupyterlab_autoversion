@@ -14,6 +14,10 @@ Enhanced checkpoints, versioned and persistent between restarts on every save
 ![](https://raw.githubusercontent.com/timkpaine/jupyterlab_autoversion/main/docs/example.gif)
 
 
+Diff notebooks to previously saved versions:
+![](https://raw.githubusercontent.com/timkpaine/jupyterlab_autoversion/main/docs/diff.gif)
+
+
 ## Install
 
 ```bash
