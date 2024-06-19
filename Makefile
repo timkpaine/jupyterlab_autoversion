@@ -1,45 +1,65 @@
-testpy: ## Clean and Make unit tests
-	python -m pytest -v jupyterlab_autoversion/tests --cov=jupyterlab_autoversion --junitxml=python_junit.xml --cov-report=xml --cov-branch
-
-testjs: ## Clean and Make js tests
-	cd js; yarn test
-
-test: tests
-tests: testpy testjs ## run the tests
-
-lintpy:  ## Black/flake8 python
-	python -m black --check jupyterlab_autoversion setup.py
-	python -m flake8 jupyterlab_autoversion setup.py
-
-lintjs:  ## ESlint javascript
-	cd js; yarn lint
-
-lint: lintpy lintjs  ## run linter
-
-fixpy:  ## Black python
-	python -m black jupyterlab_autoversion/ setup.py
-
-fixjs:  ## ESlint Autofix JS
-	cd js; yarn fix
-
-fix: fixpy fixjs  ## run black/tslint fix
-format: fix
-
-check: checks
-checks:  ## run lint and other checks
-	check-manifest -v
-
+###############
+# Build Tools #
+###############
 build:  ## build python/javascript
 	python -m build .
 
 develop:  ## install to site-packages in editable mode
 	python -m pip install --upgrade build pip setuptools twine wheel
-	cd js; yarn
+	cd js; yarn install
 	python -m pip install -e .[develop]
 
 install:  ## install to site-packages
 	python -m pip install .
 
+###########
+# Testing #
+###########
+testpy: ## run python unit tests
+	python -m pytest -v jupyterlab_autoversion/tests --junitxml=junit.xml --cov=jupyterlab_autoversion --cov-report=xml:.coverage.xml --cov-branch --cov-fail-under=50 --cov-report term-missing
+
+testjs: ## run javascript unit tests
+	cd js; yarn test
+
+test: tests
+tests: testpy testjs ## run all tests
+
+###########
+# Linting #
+###########
+lintpy:  ## lint python with ruff
+	python -m ruff check jupyterlab_autoversion setup.py
+
+lintjs:  ## lint javascript with eslint
+	cd js; yarn lint
+
+lint: lintpy lintjs  ## run all linters
+
+fixpy:  ## format python with ruff
+	python -m ruff format jupyterlab_autoversion setup.py
+
+fixjs:  ## format javascript with eslint
+	cd js; yarn fix
+
+fix: fixpy fixjs  ## run all autofixers
+format: fix
+
+#################
+# Other Checks #
+#################
+check: checks
+
+checks: check-manifest  ## run security, packaging, and other checks
+
+check-manifest:  ## run manifest checker for sdist
+	check-manifest -v
+
+semgrep:  ## run semgrep
+	semgrep ci --config auto
+
+################
+# Distribution #
+################
 dist: clean build  ## create dists
 	python -m twine check dist/*
 
@@ -51,10 +71,9 @@ publishjs:  ## dist to npm
 
 publish: dist publishpy publishjs  ## dist to pypi and npm
 
-docs:  ## make documentation
-	make -C ./docs html
-	open ./docs/_build/html/index.html
-
+############
+# Cleaning #
+############
 clean: ## clean the repository
 	find . -name "__pycache__" | xargs  rm -rf
 	find . -name "*.pyc" | xargs rm -rf
@@ -62,9 +81,11 @@ clean: ## clean the repository
 	rm -rf .coverage coverage *.xml build dist *.egg-info lib node_modules .pytest_cache *.egg-info
 	rm -rf jupyterlab_autoversion/labextension
 	cd js && yarn clean
-	# make -C ./docs clean
 	git clean -fd
 
+###########
+# Helpers #
+###########
 # Thanks to Francoise at marmelab.com for this
 .DEFAULT_GOAL := help
 help:
@@ -73,4 +94,4 @@ help:
 print-%:
 	@echo '$*=$($*)'
 
-.PHONY: testjs testpy tests test lintpy lintjs lint fixpy fixjs fix format checks check build develop install labextension dist publishpy publishjs publish docs clean
+.PHONY: testjs testpy tests test lintpy lintjs lint fixpy fixjs fix format checks check check-manifest semgrep build develop install labextension dist publishpy publishjs publish docs clean

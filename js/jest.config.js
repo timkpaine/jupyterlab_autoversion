@@ -1,13 +1,33 @@
+const esModules = [
+  "@jupyter",
+  "@jupyterlab",
+  "@jupyter-widgets",
+  "@microsoft",
+  "@rjsf",
+  "delaunator",
+  "exenv-es6",
+  "internmap",
+  "lib0",
+  "lodash-es",
+  "nanoid",
+  "nbdime",
+  "robust-predicates",
+  "vscode-ws-jsonrpc",
+  "y-protocols",
+].join("|");
+
 module.exports = {
-  transform: {
-    "^.+\\.jsx?$": "babel-jest",
-    ".+\\.(css|styl|less|sass|scss)$": "jest-transform-css",
-  },
-  testEnvironment: "jsdom",
+  moduleDirectories: ["node_modules", "src", "tests"],
   moduleNameMapper: {
     "\\.(css|less|sass|scss)$": "<rootDir>/tests/styleMock.js",
     "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/tests/fileMock.js",
   },
-  moduleDirectories: ["node_modules", "src", "tests"],
-  transformIgnorePatterns: ["/node_modules/(?!(@jupyterlab|@finos*|lib0|y-protocols))"],
+  reporters: ["default", "jest-junit"],
+  setupFiles: ["<rootDir>/tests/setup.js"],
+  testEnvironment: "jsdom",
+  transform: {
+    "^.+\\.jsx?$": "babel-jest",
+    ".+\\.(css|styl|less|sass|scss)$": "jest-transform-css",
+  },
+  transformIgnorePatterns: [`/node_modules/(?!(${esModules}))`],
 };

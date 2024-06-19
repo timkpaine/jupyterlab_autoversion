@@ -1,3 +1,104 @@
 [build-system]
-requires = ["setuptools", "wheel", "jupyter-packaging", "jupyterlab>=3,<4"]
-build-backend = "jupyter_packaging.build_api"
+requires = [
+    "hatchling>=1.22.4,<1.23",
+    "pkginfo>=1.10,<1.11",
+    "jupyterlab>=4,<5",
+]
+build-backend = "hatchling.build"
+
+[project]
+name = "jupyterlab_autoversion"
+description = "Automatically version jupyter notebooks on save"
+version = "0.1.0"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.7"
+authors = [
+    { name = "the jupyterlab_autoversion authors" },
+]
+keywords = [
+    "Jupyter",
+    "JupyterLab",
+    "JupyterLab Extension",
+    "Templates",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Framework :: Jupyter",
+    "Framework :: Jupyter :: JupyterLab",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: Apache Software License",
+]
+dependencies = [
+    "GitPython>=2.1.11",
+    "jupyterlab>=4,<5",
+    "nbdime",
+]
+
+[project.optional-dependencies]
+develop = [
+    "ruff>=0.3,<0.5",
+    "pytest",
+    "pytest-cov",
+    "twine>=5,<5.2"
+]
+test = [
+    "pytest",
+    "pytest-cov",
+]
+
+[project.urls]
+Repository = "https://github.com/timkpaine/jupyterlab_autoversion"
+Homepage = "https://github.com/timkpaine/jupyterlab_autoversion"
+
+[tool.check-manifest]
+ignore = [
+	"jupyterlab_autoversion/labextension/**",
+	"js/**"
+]
+
+[tool.hatch.build]
+artifacts = [
+    "jupyterlab_autoversion/labextension"
+]
+
+[tool.hatch.build.targets.wheel.shared-data]
+"jupyterlab_autoversion/labextension" = "share/jupyter/labextensions/jupyterlab_autoversion"
+"jupyterlab_autoversion/extension/install.json" = "share/jupyter/labextensions/jupyterlab_autoversion/install.json"
+"jupyterlab_autoversion/extension/jupyterlab_autoversion.json" = "etc/jupyter/jupyter_server_config.d/jupyterlab_autoversion.json"
+
+[tool.hatch.build.targets.sdist]
+exclude = [
+    ".github",
+    "binder",
+    "docs",
+]
+
+[tool.hatch.build.hooks.jupyter-builder]
+build-function = "hatch_jupyter_builder.npm_builder"
+ensured-targets = [
+    "jupyterlab_autoversion/labextension/package.json",
+]
+skip-if-exists = [
+    "jupyterlab_autoversion/labextension/package.json",
+]
+dependencies = [
+    "hatch-jupyter-builder>=0.5.0",
+]
+
+[tool.hatch.build.hooks.jupyter-builder.build-kwargs]
+path = "js"
+build_cmd = "build"
+npm = "yarn"
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]
