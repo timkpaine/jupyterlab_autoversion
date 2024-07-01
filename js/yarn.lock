@@ -2398,13 +2398,13 @@
     vscode-ws-jsonrpc "~1.0.2"
 
 "@jupyterlab/mainmenu@^4.1.5":
-  version "4.2.2"
-  resolved "https://registry.yarnpkg.com/@jupyterlab/mainmenu/-/mainmenu-4.2.2.tgz#cb0c1c02d9230c507f2e698d233f2323b8434779"
-  integrity sha512-3CgfV71appPpgTJ/5LsqcAq4MUlT7cn9nqJw9wG+ML0GWHp+XGin3GgW1sHqqN6xa1XKIeYBiFsHcsM1MLBEfA==
+  version "4.2.3"
+  resolved "https://registry.yarnpkg.com/@jupyterlab/mainmenu/-/mainmenu-4.2.3.tgz#b7736d1c7e093ad896337f9a871be1f3d9345e3c"
+  integrity sha512-Y+KAwNHIHz21w9D5qhQN2dFCo4x6U3UnvRSG4bV5IG4i7agmazitH/VnOKMhAE5oJ0aASQvd3R1YCfb77O4ukA==
   dependencies:
-    "@jupyterlab/apputils" "^4.3.2"
-    "@jupyterlab/translation" "^4.2.2"
-    "@jupyterlab/ui-components" "^4.2.2"
+    "@jupyterlab/apputils" "^4.3.3"
+    "@jupyterlab/translation" "^4.2.3"
+    "@jupyterlab/ui-components" "^4.2.3"
     "@lumino/algorithm" "^2.0.1"
     "@lumino/commands" "^2.3.0"
     "@lumino/coreutils" "^2.1.2"
