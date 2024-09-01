@@ -2230,9 +2230,9 @@
     yjs "^13.5.40"
 
 "@jupyterlab/coreutils@^6", "@jupyterlab/coreutils@^6.0.0", "@jupyterlab/coreutils@^6.2.2", "@jupyterlab/coreutils@^6.2.3", "@jupyterlab/coreutils@^6.2.4":
-  version "6.2.4"
-  resolved "https://registry.yarnpkg.com/@jupyterlab/coreutils/-/coreutils-6.2.4.tgz#ff0744f93f3e4f1f907673ecc656052108e29d70"
-  integrity sha512-A3yHM3UgMYKKJU8JtcPEMGUWUHMlol3TFCdFQbeJnqj+uJmxV0ejkLvDlGk+mefjpcVm/z3cXaDrwoUVtY2FDw==
+  version "6.2.5"
+  resolved "https://registry.yarnpkg.com/@jupyterlab/coreutils/-/coreutils-6.2.5.tgz#906dc8b65c841e8bf1c7589983bab90a12f8d24e"
+  integrity sha512-P3HniEv3bZ3EvV3zUwCmruR713fclGvSTfsuwFPBgI8M3rNIZYqGQ13xkTun7Zl6DUr2E8mrC/cq9jNwxW33yw==
   dependencies:
     "@lumino/coreutils" "^2.1.2"
     "@lumino/disposable" "^2.1.2"
