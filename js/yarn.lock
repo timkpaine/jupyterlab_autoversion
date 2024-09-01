@@ -2382,11 +2382,11 @@
     "@lumino/widgets" "^2.3.2"
 
 "@jupyterlab/mathjax2@^3.6.7":
-  version "3.6.7"
-  resolved "https://registry.yarnpkg.com/@jupyterlab/mathjax2/-/mathjax2-3.6.7.tgz#c5a3e192280c5d795fb4fb7432feaab5dfcebf8d"
-  integrity sha512-ycTEU4XDst59+pGBGYAU1VYLjM9Zynntut7LBWs7F3HCIWSbunbMs+HfVMcInVtWXlahuz6nFdS0RJyrVzBa6A==
+  version "3.6.8"
+  resolved "https://registry.yarnpkg.com/@jupyterlab/mathjax2/-/mathjax2-3.6.8.tgz#56321512f7f2fd05697e697ebab0839cea5afd18"
+  integrity sha512-A3G0r2hXdGM7nCWF/6tBKdCW4vOuYxuUA2z0Aj/3fAMpdnHv2J7gyHvPr47jKHArG5+f9PHuQTTmzHm3at4Dvw==
   dependencies:
-    "@jupyterlab/rendermime-interfaces" "^3.6.7"
+    "@jupyterlab/rendermime-interfaces" "^3.6.8"
     "@lumino/coreutils" "^1.11.0"
 
 "@jupyterlab/nbformat@^3.0.0 || ^4.0.0-alpha.21 || ^4.0.0", "@jupyterlab/nbformat@^4.0.0", "@jupyterlab/nbformat@^4.2.2", "@jupyterlab/nbformat@^4.2.3", "@jupyterlab/nbformat@^4.2.4":
@@ -2474,18 +2474,10 @@
     "@lumino/signaling" "^2.1.2"
     "@lumino/widgets" "^2.3.2"
 
-"@jupyterlab/rendermime-interfaces@^3.10.2", "@jupyterlab/rendermime-interfaces@^3.10.3", "@jupyterlab/rendermime-interfaces@^3.6.7":
-  version "3.10.3"
-  resolved "https://registry.yarnpkg.com/@jupyterlab/rendermime-interfaces/-/rendermime-interfaces-3.10.3.tgz#84c742244516e27c54e0925d1c522839833665c5"
-  integrity sha512-Zjny2rZw7wuFrCi4fbESLKWU1M2GQ//O9dBFZxjc3d4dOjT0nQ48VTp1ThFVphMr9EOhAgvTJzNFBbhel49ERw==
-  dependencies:
-    "@lumino/coreutils" "^1.11.0 || ^2.1.2"
-    "@lumino/widgets" "^1.37.2 || ^2.3.2"
-
-"@jupyterlab/rendermime-interfaces@^3.10.4":
-  version "3.10.4"
-  resolved "https://registry.yarnpkg.com/@jupyterlab/rendermime-interfaces/-/rendermime-interfaces-3.10.4.tgz#049db4d6d3465c113e187e0c7fa5e4ce7d1e8c20"
-  integrity sha512-V4YlDjIrya+n1ks9Bwdi0oq2V/cqTcXJI74FYBPHFc3k0HPKiYawwLFJ0VvtL3kumhzsqJdEhYsqIyr0rAIGwg==
+"@jupyterlab/rendermime-interfaces@^3.10.2", "@jupyterlab/rendermime-interfaces@^3.10.3", "@jupyterlab/rendermime-interfaces@^3.10.4", "@jupyterlab/rendermime-interfaces@^3.6.8":
+  version "3.10.5"
+  resolved "https://registry.yarnpkg.com/@jupyterlab/rendermime-interfaces/-/rendermime-interfaces-3.10.5.tgz#ca63afab7e4070b24562d20575983979785aefef"
+  integrity sha512-wZq4QhmckMqEjImMxTLFVtj+E0GI82/i0nCuaEI6tReXOqVFDg5wG/ChD/B/g0Xz+uPqt92R5rzZTpzodkDiKA==
   dependencies:
     "@lumino/coreutils" "^1.11.0 || ^2.1.2"
     "@lumino/widgets" "^1.37.2 || ^2.3.2"
