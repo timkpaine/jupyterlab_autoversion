@@ -1569,9 +1569,9 @@
     "@lumino/signaling" "^2.1.3"
 
 "@jupyterlab/builder@^4.1.5":
-  version "4.3.5"
-  resolved "https://registry.yarnpkg.com/@jupyterlab/builder/-/builder-4.3.5.tgz#777fbee7a5c4d130c4b93949c4b3e9dda68181b3"
-  integrity sha512-Asc6WpHFzdFL9CsrgFPexk3KF6/uw0r+XMEteY8cYdtosTfGP9BvTUSt51pj6XxUdPooOlmPdZo9aGUnPEIjOQ==
+  version "4.3.6"
+  resolved "https://registry.yarnpkg.com/@jupyterlab/builder/-/builder-4.3.6.tgz#4c4aa1fc56cc6e7e0cc810ac2f8b011c9193952f"
+  integrity sha512-h96k18hl93G8lmGlMN0Tiu18Hz5rgsmjJu3nULPpa+U9tVgaWG61vv1e+UmzxEpMVUQ6nlNmoho29EP6gEAIaQ==
   dependencies:
     "@lumino/algorithm" "^2.0.2"
     "@lumino/application" "^2.4.1"
