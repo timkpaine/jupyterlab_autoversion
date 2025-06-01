@@ -1737,9 +1737,9 @@
     yjs "^13.5.40"
 
 "@jupyterlab/coreutils@^6", "@jupyterlab/coreutils@^6.0.0", "@jupyterlab/coreutils@^6.3.0", "@jupyterlab/coreutils@^6.3.5", "@jupyterlab/coreutils@^6.3.6", "@jupyterlab/coreutils@^6.4.1":
-  version "6.4.1"
-  resolved "https://registry.yarnpkg.com/@jupyterlab/coreutils/-/coreutils-6.4.1.tgz#cfc6cbeb6afddb442f4e99318e5a7eb4a2010987"
-  integrity sha512-DcKZV1Vrn4UzMJDmPTR3ZGPAjP9nZfQmhuD4diMAmzu7pZWntKfPNlq6EuY8izmjGoONCTTAzAhpsdnCSrxPZg==
+  version "6.4.3"
+  resolved "https://registry.yarnpkg.com/@jupyterlab/coreutils/-/coreutils-6.4.3.tgz#e0274863fa2ac7dacd0072abc665fcba994d2d3c"
+  integrity sha512-v+uZAx2rFBgwSurrWlen4UniGtyeL2enIoLXHGZpwZanBLvICXbLNJRo7wejm89kWEe7qYPs2cCzHtQTN/6yxQ==
   dependencies:
     "@lumino/coreutils" "^2.2.1"
     "@lumino/disposable" "^2.1.4"
