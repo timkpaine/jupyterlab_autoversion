@@ -73,7 +73,7 @@
     "eslint-plugin-prettier": "^5.5.0",
     "isomorphic-fetch": "^3.0.0",
     "jest": "^30.0.2",
-    "jest-environment-jsdom": "^29.7.0",
+    "jest-environment-jsdom": "^30.0.2",
     "jest-junit": "^16.0.0",
     "jest-transform-css": "^6.0.3",
     "jsdom-testing-mocks": "^1.13.1",
