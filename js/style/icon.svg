@@ -1,4 +1,4 @@
-<svg data-icon="jupyterlab_autoversion" width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<svg data-icon="jupyterlab-autoversion" width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
 <!-- https://github.com/jupyterlab/jupyterlab/blob/master/packages/ui-components/README.md#adding-classes-to-a-one-color-icon -->
 <path
     class="jp-icon3"

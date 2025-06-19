@@ -41,7 +41,6 @@ module.exports = {
     "linebreak-style": ["error", "unix"],
     "no-const-assign": "error",
     "no-nested-ternary": "warn",
-    "no-plusplus": "off",
     "no-this-before-super": "error",
     "no-undef": "error",
     "no-underscore-dangle": "off",
@@ -52,6 +51,7 @@ module.exports = {
     "spaced-comment": "off",
     "valid-typeof": "error",
 
+    "import/extensions": "off",
     "import/no-unresolved": "off",
     "import/prefer-default-export": "off",
     "import/no-extraneous-dependencies": "off",

@@ -1,11 +1,12 @@
 import hashlib
 import os
 import os.path
+
 import nbformat
 import tornado.web
 from git import Git
-from nbdime import diff_notebooks
 from jupyter_server.base.handlers import JupyterHandler
+from nbdime import diff_notebooks
 
 
 class GitDiffHandler(JupyterHandler):
