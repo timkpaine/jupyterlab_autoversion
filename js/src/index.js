@@ -58,13 +58,13 @@ function activate(app, tracker, rendermime) {
   });
 
   // eslint-disable-next-line no-console
-  console.log("JupyterLab extension jupyterlab_autoversion is activated!");
+  console.log("JupyterLab extension jupyterlab-autoversion is activated!");
 }
 
 const extension = {
   activate,
   autoStart: true,
-  id: "jupyterlab_autoversion",
+  id: "jupyterlab-autoversion",
   requires: [INotebookTracker, IRenderMimeRegistry],
 };
 

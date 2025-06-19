@@ -15,3 +15,7 @@ Object.defineProperty(window, "matchMedia", {
     dispatchEvent: jest.fn(),
   })),
 });
+
+jest.mock("@jupyterlab/notebook", () => ({
+  INotebookTracker: "notebook-tracker",
+}));

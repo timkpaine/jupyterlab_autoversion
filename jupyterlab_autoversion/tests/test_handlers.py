@@ -1,11 +1,13 @@
 # for Coverage
 import os
 import os.path
+from tempfile import TemporaryDirectory
+from unittest.mock import MagicMock
+
 import tornado.web
 from git import Repo
-from unittest.mock import MagicMock
+
 from jupyterlab_autoversion.storage.git.handlers import GitGetHandler, GitRestoreHandler
-from tempfile import TemporaryDirectory
 
 
 class TestExtension:

@@ -1,12 +1,13 @@
 import os
 import os.path
-from git import Repo
 from functools import partial
+
+from git import Repo
 from jupyter_server.utils import url_path_join
 
+from .diff import GitDiffHandler
 from .handlers import GitGetHandler, GitRestoreHandler
 from .hook import post_save_autocommit_git
-from .diff import GitDiffHandler
 
 
 def initialize(nb_server_app):
