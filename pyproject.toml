@@ -123,21 +123,13 @@ exclude = [
 [tool.hatch.build.targets.wheel]
 packages = ["jupyterlab_autoversion"]
 exclude = [
-<<<<<<< before updating
     "/binder",
-=======
->>>>>>> after updating
     "/js"
 ]
 
 [tool.hatch.build.targets.wheel.shared-data]
-<<<<<<< before updating
 "jupyterlab_autoversion/labextension" = "share/jupyter/labextensions/jupyterlab-autoversion"
 "jupyterlab_autoversion/extension/install.json" = "share/jupyter/labextensions/jupyterlab-autoversion/install.json"
-=======
-"jupyterlab_autoversion/labextension" = "share/jupyter/labextensions/jupyterlab_autoversion"
-"jupyterlab_autoversion/extension/install.json" = "share/jupyter/labextensions/jupyterlab_autoversion/install.json"
->>>>>>> after updating
 "jupyterlab_autoversion/extension/jupyterlab_autoversion.json" = "etc/jupyter/jupyter_server_config.d/jupyterlab_autoversion.json"
 
 [tool.hatch.build.hooks.jupyter-builder]
