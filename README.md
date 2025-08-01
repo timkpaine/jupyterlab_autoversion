@@ -9,10 +9,10 @@ Automatically version jupyter notebooks in JupyterLab
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/timkpaine/jupyterlab-autoversion/main?urlpath=lab)
 
 ## Save every notebook revision
+
 Enhanced checkpoints, versioned and persistent between restarts on every save
 
 ![](https://raw.githubusercontent.com/timkpaine/jupyterlab-autoversion/main/docs/example.gif)
-
 
 Diff notebooks to previously saved versions:
 ![](https://raw.githubusercontent.com/timkpaine/jupyterlab-autoversion/main/docs/diff.gif)
