@@ -11,6 +11,7 @@ Automatically version jupyter notebooks in JupyterLab
 ## Save every notebook revision
 Enhanced checkpoints, versioned and persistent between restarts on every save
 
+<<<<<<< before updating
 ![](https://raw.githubusercontent.com/timkpaine/jupyterlab-autoversion/main/docs/example.gif)
 
 
@@ -22,5 +23,7 @@ Diff notebooks to previously saved versions:
 This software is licensed under the Apache 2.0 license. See the
 [LICENSE](LICENSE) file for details.
 
+=======
+>>>>>>> after updating
 > [!NOTE]
 > This library was generated using [copier](https://copier.readthedocs.io/en/stable/) from the [Base Python Project Template repository](https://github.com/python-project-templates/base).
