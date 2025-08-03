@@ -1,9 +1,5 @@
 [build-system]
-requires = [
-    "hatchling",
-    "hatch-jupyter-builder",
-    "jupyterlab>=4,<5",
-]
+requires = ["hatchling", "hatch-js", "jupyterlab>=4,<5"]
 build-backend="hatchling.build"
 
 [project]
@@ -42,8 +38,8 @@ develop = [
     "build",
     "bump-my-version",
     "check-manifest",
-    "hatch-jupyter-builder",
     "codespell>=2.4,<2.5",
+    "hatch-js",
     "hatchling",
     "mdformat>=0.7.22,<0.8",
     "mdformat-tables>=1",
@@ -88,6 +84,7 @@ ignore = [
     "js/pnpm-lock.yaml",
     "Makefile",
     ".vscode/*",
+    "jupyterlab_autoversion/extension/**",
     "jupyterlab_autoversion/labextension/**",
     "binder/**/*",
     "docs/**/*",
@@ -137,22 +134,24 @@ exclude = [
 "jupyterlab_autoversion/extension/install.json" = "share/jupyter/labextensions/jupyterlab-autoversion/install.json"
 "jupyterlab_autoversion/extension/jupyterlab_autoversion.json" = "etc/jupyter/jupyter_server_config.d/jupyterlab_autoversion.json"
 
+<<<<<<< before updating
 [tool.hatch.build.hooks.jupyter-builder]
 build-function = "hatch_jupyter_builder.npm_builder"
 ensured-targets = [
     "jupyterlab_autoversion/labextension/package.json",
 ]
 skip-if-exists = [
+=======
+[tool.hatch.build.hooks.hatch-js]
+path = "js"
+install_cmd = "install"
+build_cmd = "build"
+tool = "pnpm"
+targets = [
+    "jupyterlab_autoversion/nbextension/static/notebook.js",
+>>>>>>> after updating
     "jupyterlab_autoversion/labextension/package.json",
 ]
-dependencies = [
-    "hatch-jupyter-builder",
-]
-
-[tool.hatch.build.hooks.jupyter-builder.build-kwargs]
-path = "js"
-build_cmd = "build"
-npm = "pnpm"
 
 [tool.pytest.ini_options]
 addopts = ["-vvv", "--junitxml=junit.xml"]
