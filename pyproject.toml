@@ -134,22 +134,12 @@ exclude = [
 "jupyterlab_autoversion/extension/install.json" = "share/jupyter/labextensions/jupyterlab-autoversion/install.json"
 "jupyterlab_autoversion/extension/jupyterlab_autoversion.json" = "etc/jupyter/jupyter_server_config.d/jupyterlab_autoversion.json"
 
-<<<<<<< before updating
-[tool.hatch.build.hooks.jupyter-builder]
-build-function = "hatch_jupyter_builder.npm_builder"
-ensured-targets = [
-    "jupyterlab_autoversion/labextension/package.json",
-]
-skip-if-exists = [
-=======
 [tool.hatch.build.hooks.hatch-js]
 path = "js"
 install_cmd = "install"
 build_cmd = "build"
 tool = "pnpm"
 targets = [
-    "jupyterlab_autoversion/nbextension/static/notebook.js",
->>>>>>> after updating
     "jupyterlab_autoversion/labextension/package.json",
 ]
 
