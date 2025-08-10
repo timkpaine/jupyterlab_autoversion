@@ -136,7 +136,6 @@ exclude = [
 
 [tool.hatch.build.hooks.hatch-js]
 path = "js"
-install_cmd = "install"
 build_cmd = "build"
 tool = "pnpm"
 targets = [
