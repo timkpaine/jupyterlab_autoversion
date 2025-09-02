@@ -47,7 +47,7 @@
     "@jupyterlab/docmanager": "^4.4.5",
     "@jupyterlab/filebrowser": "^4.4.3",
     "@jupyterlab/launcher": "^4.4.6",
-    "@jupyterlab/mainmenu": "^4.4.3",
+    "@jupyterlab/mainmenu": "^4.4.6",
     "@jupyterlab/mathjax2": "^3.6.8",
     "@jupyterlab/notebook": "^4.4.6",
     "@jupyterlab/rendermime": "^4.4.3",
