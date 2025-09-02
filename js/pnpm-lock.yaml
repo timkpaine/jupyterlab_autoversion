@@ -27,8 +27,8 @@ importers:
         specifier: ^4.4.6
         version: 4.4.6
       '@jupyterlab/mainmenu':
-        specifier: ^4.4.3
-        version: 4.4.3(react@18.3.1)
+        specifier: ^4.4.6
+        version: 4.4.6(react@18.3.1)
       '@jupyterlab/mathjax2':
         specifier: ^3.6.8
         version: 3.6.8(crypto@1.0.1)
@@ -1154,8 +1154,8 @@ packages:
   '@jupyterlab/lsp@4.4.6':
     resolution: {integrity: sha512-8W9cQfC39ZZ33Cl0JtW+zNLLmRPdo9L+0jN9IoEwIFJ2BGXmGllhJBQ4H/QAu2HV+uSXYxau+uihIlyCUnogUA==}
 
-  '@jupyterlab/mainmenu@4.4.3':
-    resolution: {integrity: sha512-Q5TS2JpUdQFpErCw2T98VT5E7z8IuPAX9OU6kMnrD6CT3wn8lHjxxNRKTjEji+guUljBhCu0Rpmgq0DyAJxd+A==}
+  '@jupyterlab/mainmenu@4.4.6':
+    resolution: {integrity: sha512-WmhdYFOcBRSPWn4vPPdl5mpgLXbiSGBdiCnyd4Pcb1/5zIYpf7BFh4pvj+yYgDdPadNTIG4ZRbX7B61BOok8rw==}
 
   '@jupyterlab/mathjax2@3.6.8':
     resolution: {integrity: sha512-A3G0r2hXdGM7nCWF/6tBKdCW4vOuYxuUA2z0Aj/3fAMpdnHv2J7gyHvPr47jKHArG5+f9PHuQTTmzHm3at4Dvw==}
@@ -6746,11 +6746,11 @@ snapshots:
       - react
       - utf-8-validate
 
-  '@jupyterlab/mainmenu@4.4.3(react@18.3.1)':
+  '@jupyterlab/mainmenu@4.4.6(react@18.3.1)':
     dependencies:
       '@jupyterlab/apputils': 4.5.6
-      '@jupyterlab/translation': 4.4.3(react@18.3.1)
-      '@jupyterlab/ui-components': 4.4.3(react@18.3.1)
+      '@jupyterlab/translation': 4.4.6(react@18.3.1)
+      '@jupyterlab/ui-components': 4.4.6(react@18.3.1)
       '@lumino/algorithm': 2.0.3
       '@lumino/commands': 2.3.2
       '@lumino/coreutils': 2.2.1
