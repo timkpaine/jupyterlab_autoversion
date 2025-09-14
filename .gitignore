@@ -146,6 +146,7 @@ jupyterlab_autoversion/extension
 # Jupyter
 .ipynb_checkpoints
 .autoversion
+Untitled*.ipynb
 !jupyterlab_autoversion/extension/jupyterlab_autoversion.json
 !jupyterlab_autoversion/extension/install.json
 jupyterlab_autoversion/nbextension
