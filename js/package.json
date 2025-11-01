@@ -51,7 +51,7 @@
     "@jupyterlab/mainmenu": "^4.4.9",
     "@jupyterlab/mathjax2": "^3.6.8",
     "@jupyterlab/notebook": "^4.4.9",
-    "@jupyterlab/rendermime": "^4.4.9",
+    "@jupyterlab/rendermime": "^4.4.10",
     "@jupyterlab/services": "^7.4.9",
     "@lumino/disposable": "^2.1.4",
     "nbdime": "^7.0.2"
