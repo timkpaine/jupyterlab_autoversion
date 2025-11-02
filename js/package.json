@@ -43,6 +43,7 @@
   "dependencies": {
     "@jupyterlab/application": "^4.4.10",
     "@jupyterlab/apputils": "^4.5.10",
+<<<<<<< before updating
     "@jupyterlab/coreutils": "^6.4.10",
     "@jupyterlab/docmanager": "^4.4.10",
     "@jupyterlab/filebrowser": "^4.4.10",
@@ -54,6 +55,11 @@
     "@jupyterlab/services": "^7.4.10",
     "@lumino/disposable": "^2.1.4",
     "nbdime": "^7.0.2"
+=======
+    "@jupyterlab/notebook": "^4.4.10",
+    "@jupyterlab/services": "^7.4.10",
+    "@lumino/disposable": "^2.1.4"
+>>>>>>> after updating
   },
   "devDependencies": {
     "@babel/cli": "^7.28.3",
