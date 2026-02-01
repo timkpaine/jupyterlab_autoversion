@@ -45,7 +45,7 @@
     "@jupyterlab/apputils": "^4.6.1",
     "@jupyterlab/coreutils": "^6.5.1",
     "@jupyterlab/docmanager": "^4.5.1",
-    "@jupyterlab/filebrowser": "^4.5.1",
+    "@jupyterlab/filebrowser": "^4.5.3",
     "@jupyterlab/launcher": "^4.5.1",
     "@jupyterlab/mainmenu": "^4.5.1",
     "@jupyterlab/mathjax2": "^3.6.8",
