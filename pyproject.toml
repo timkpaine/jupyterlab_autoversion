@@ -86,28 +86,12 @@ filename = "js/package.json"
 search = '"version": "{current_version}"'
 replace = '"version": "{new_version}"'
 
-<<<<<<< before updating
-[tool.check-manifest]
-ignore = [
-    ".copier-answers.yaml",
-    "js/pnpm-lock.yaml",
-    "Makefile",
-    ".vscode/*",
-    "jupyterlab_autoversion/extension/**",
-    "jupyterlab_autoversion/labextension/**",
-    "binder/**/*",
-    "docs/**/*",
-    "js/dist/**/*",
-    "js/lib/*",
-]
-
-=======
->>>>>>> after updating
 [tool.coverage.run]
 branch = true
 omit = [
     "jupyterlab_autoversion/tests/integration/",
 ]
+
 [tool.coverage.report]
 exclude_also = [
     "raise NotImplementedError",
@@ -131,14 +115,9 @@ packages = [
     "js",
 ]
 exclude = [
-<<<<<<< before updating
-    "/binder",
-    "/js/dist",
-    "/js/node_modules",
-=======
+    "binder",
     "js/dist",
     "js/node_modules",
->>>>>>> after updating
 ]
 
 [tool.hatch.build.targets.wheel]
@@ -146,12 +125,8 @@ packages = [
     "jupyterlab_autoversion",
 ]
 exclude = [
-<<<<<<< before updating
-    "/binder",
-    "/js"
-=======
+    "binder",
     "js"
->>>>>>> after updating
 ]
 
 [tool.hatch.build.targets.wheel.shared-data]
