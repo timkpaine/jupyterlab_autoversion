@@ -2,7 +2,7 @@
 requires = [
     "hatchling",
     "hatch-js",
-    "jupyterlab>=4,<5",
+    "jupyterlab>=4.5.7,<5",
 ]
 build-backend = "hatchling.build"
 
@@ -38,7 +38,7 @@ classifiers = [
 
 dependencies = [
     "GitPython>=3.1.49",
-    "jupyterlab>=4,<5",
+    "jupyterlab>=4.5.7,<5",
     "nbdime",
 ]
 
@@ -52,7 +52,7 @@ develop = [
     "hatchling",
     "mdformat",
     "mdformat-tables>=1",
-    "jupyterlab>=4,<5",
+    "jupyterlab>=4.5.7,<5",
     "pytest",
     "pytest-cov",
     "ruff",
