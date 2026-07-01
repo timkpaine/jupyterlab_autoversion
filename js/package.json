@@ -43,7 +43,7 @@
   },
   "dependencies": {
     "@jupyterlab/application": "^4.5.7",
-    "@jupyterlab/apputils": "^4.6.7",
+    "@jupyterlab/apputils": "^4.7.0",
     "@jupyterlab/coreutils": "^6.5.7",
     "@jupyterlab/docmanager": "^4.5.7",
     "@jupyterlab/filebrowser": "^4.5.7",
