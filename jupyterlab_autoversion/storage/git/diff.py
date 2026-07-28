@@ -35,7 +35,7 @@ class GitDiffHandler(JupyterHandler):
             return
 
         # original head index
-        past = sorted(self.repo.tags, key=lambda t: t.commit.committed_datetime)[-1]
+        past = max(self.repo.tags, key=lambda t: t.commit.committed_datetime)
 
         # connect to git repo
         git = Git(self.repo.working_tree_dir)

@@ -28,7 +28,7 @@ class GitGetHandler(JupyterHandler):
 
         last = [
             [x.commit.hexsha, x.commit.authored_date * 1000] + x.name.split("-")
-            for x in reversed(sorted(self.repo.tags, key=lambda t: t.commit.committed_datetime))
+            for x in sorted(self.repo.tags, key=lambda t: t.commit.committed_datetime, reverse=True)
             if id in x.name
         ]
 
@@ -62,7 +62,7 @@ class GitRestoreHandler(JupyterHandler):
             return
 
         # original head index
-        past = sorted(self.repo.tags, key=lambda t: t.commit.committed_datetime)[-1]
+        past = max(self.repo.tags, key=lambda t: t.commit.committed_datetime)
 
         # connect to git repo
         git = Git(self.repo.working_tree_dir)

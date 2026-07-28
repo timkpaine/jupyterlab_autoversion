@@ -1,1 +1,1 @@
-from jupyterlab_autoversion import *  # noqa
+from jupyterlab_autoversion import *
