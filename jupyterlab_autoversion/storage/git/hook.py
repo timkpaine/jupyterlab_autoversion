@@ -31,5 +31,5 @@ def post_save_autocommit_git(repo, model, *args, **kwargs):
         last = len([x for x in repo.tags if id in x.name])
 
         repo.index.add([nb])
-        repo.index.commit("%s-%d" % (id, last))
-        repo.create_tag("%s-%d" % (id, last))
+        repo.index.commit(f"{id}-{last}")
+        repo.create_tag(f"{id}-{last}")
