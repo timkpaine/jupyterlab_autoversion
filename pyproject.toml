@@ -36,7 +36,7 @@ classifiers = [
 ]
 
 dependencies = [
-    "GitPython>=3.1.50",
+    "GitPython>=3.1.55",
     "jupyterlab>=4.6.0,<5",
     "nbdime",
 ]
