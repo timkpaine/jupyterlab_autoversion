@@ -10,7 +10,6 @@ import {autoversionIcon} from "./icon";
 
 import "../style/index.css";
 
-<<<<<<< before updating
 export class AutoversionExtension {
   commands;
 
@@ -59,10 +58,6 @@ function activate(app, tracker, rendermime) {
   });
 
   // eslint-disable-next-line no-console
-=======
-async function activate(_app) {
-  // oxlint-disable-next-line no-console
->>>>>>> after updating
   console.log("JupyterLab extension jupyterlab-autoversion is activated!");
 }
 
